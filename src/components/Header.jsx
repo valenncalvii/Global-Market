@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "../components/logo.jpg"
+import logo from "../components/logo.jpg";
+import "../css/App.css";
 export default function Header() {
   return (
     <header className="header-container">
@@ -9,13 +10,20 @@ export default function Header() {
           <h1>Mercadona</h1>
         </div>
         <ul className="nav-links">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Categorías</a></li>
-          <li><a href="#">Carrito</a></li>
-          <li><a href="#">Perfil</a></li>
+          <li>
+            <a href="#">Inicio</a>
+          </li>
+          <li>
+            <a href="#">Categorías</a>
+          </li>
+          <li>
+            <a href="#">Carrito</a>
+          </li>
+          <li>
+            <a href="#">Perfil</a>
+          </li>
         </ul>
       </nav>
     </header>
   );
 }
-
