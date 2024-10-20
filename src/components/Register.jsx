@@ -10,22 +10,22 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Verificar que las contraseñas coincidan
+   
     if (password !== confirmPassword) {
       setMessage('Las contraseñas no coinciden.');
       return;
     }
 
-    // Obtener datos del localStorage
+    
     const existingUser = JSON.parse(localStorage.getItem('user'));
 
-    // Verificar si ya existe el usuario
+ 
     if (existingUser && existingUser.email === email) {
       setMessage('Cuenta ya existente.');
       return;
     }
 
-    // Guardar el nuevo usuario en localStorage
+   
     const userData = { email, password };
     localStorage.setItem('user', JSON.stringify(userData));
     setMessage('Registro exitoso. Puedes iniciar sesión ahora.');

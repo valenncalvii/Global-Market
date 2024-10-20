@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Main from "./components/Main"; // Importa tu componente Main
+import Main from "./components/Main"; 
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/products" element={<Main />} /> {/* Página de productos */}
+        <Route path="/products" element={<Main />} /> {}
       </Routes>
       <Footer />
     </Router>

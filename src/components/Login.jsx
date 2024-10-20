@@ -9,24 +9,24 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Obtener datos del localStorage
+    
     const userData = JSON.parse(localStorage.getItem('user'));
 
-    // Comprobación de credenciales
+   
     if (!userData) {
       setErrorMessage('Cuenta inexistente.');
     } else if (userData.email !== email || userData.password !== password) {
       setErrorMessage('Email y/o contraseñas incorrectos.');
     } else {
-      // Si las credenciales son correctas, redirigir a la página de productos
-      window.location.href = '/products'; // Cambia esta URL a la ruta real de tus productos
+   
+      window.location.href = '/products'; 
     }
   };
 
   return (
     <div className="login-container">
       <h2>Iniciar Sesión</h2>
-      {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Mostrar mensaje de error */}
+      {errorMessage && <p className="error-message">{errorMessage}</p>} {}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
