@@ -1,562 +1,206 @@
 [
-    {
-        "image": "https://picsum.photos/300?random=1",
-        "title": "Producto 1",
-        "price": 1033600.0,
-        "category": "ropa",
-        "cuotas": 13
-    },
-    {
-        "image": "https://picsum.photos/300?random=2",
-        "title": "Producto 2",
-        "price": 959300.0,
-        "category": "muebles",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=3",
-        "title": "Producto 3",
-        "price": 1048800.0,
-        "category": "celulares",
-        "cuotas": 21
-    },
-    {
-        "image": "https://picsum.photos/300?random=4",
-        "title": "Producto 4",
-        "price": 1640200.0,
-        "category": "muebles",
-        "cuotas": 12
-    },
-    {
-        "image": "https://picsum.photos/300?random=5",
-        "title": "Producto 5",
-        "price": 196500.0,
-        "category": "herramientas",
-        "cuotas": 6
-    },
-    {
-        "image": "https://picsum.photos/300?random=6",
-        "title": "Producto 6",
-        "price": 226800.0,
-        "category": "electrodomesticos",
-        "cuotas": 10
-    },
-    {
-        "image": "https://picsum.photos/300?random=7",
-        "title": "Producto 7",
-        "price": 110100.0,
-        "category": "ropa",
-        "cuotas": 9
-    },
-    {
-        "image": "https://picsum.photos/300?random=8",
-        "title": "Producto 8",
-        "price": 1027700.0,
-        "category": "celulares",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=9",
-        "title": "Producto 9",
-        "price": 239800.0,
-        "category": "electrodomesticos",
-        "cuotas": 6
-    },
-    {
-        "image": "https://picsum.photos/300?random=10",
-        "title": "Producto 10",
-        "price": 80600.0,
-        "category": "libros",
-        "cuotas": 4
-    },
-    {
-        "image": "https://picsum.photos/300?random=11",
-        "title": "Producto 11",
-        "price": 1399500.0,
-        "category": "ropa",
-        "cuotas": 14
-    },
-    {
-        "image": "https://picsum.photos/300?random=12",
-        "title": "Producto 12",
-        "price": 877600.0,
-        "category": "ropa",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=13",
-        "title": "Producto 13",
-        "price": 694500.0,
-        "category": "muebles",
-        "cuotas": 24
-    },
-    {
-        "image": "https://picsum.photos/300?random=14",
-        "title": "Producto 14",
-        "price": 1719600.0,
-        "category": "electrodomesticos",
-        "cuotas": 18
-    },
-    {
-        "image": "https://picsum.photos/300?random=15",
-        "title": "Producto 15",
-        "price": 1294600.0,
-        "category": "herramientas",
-        "cuotas": 21
-    },
-    {
-        "image": "https://picsum.photos/300?random=16",
-        "title": "Producto 16",
-        "price": 942400.0,
-        "category": "libros",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=17",
-        "title": "Producto 17",
-        "price": 1013200.0,
-        "category": "muebles",
-        "cuotas": 24
-    },
-    {
-        "image": "https://picsum.photos/300?random=18",
-        "title": "Producto 18",
-        "price": 1130700.0,
-        "category": "herramientas",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=19",
-        "title": "Producto 19",
-        "price": 1792600.0,
-        "category": "electrodomesticos",
-        "cuotas": 14
-    },
-    {
-        "image": "https://picsum.photos/300?random=20",
-        "title": "Producto 20",
-        "price": 1314600.0,
-        "category": "herramientas",
-        "cuotas": 13
-    },
-    {
-        "image": "https://picsum.photos/300?random=21",
-        "title": "Producto 21",
-        "price": 1626200.0,
-        "category": "ropa",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=22",
-        "title": "Producto 22",
-        "price": 1950300.0,
-        "category": "electrodomesticos",
-        "cuotas": 15
-    },
-    {
-        "image": "https://picsum.photos/300?random=23",
-        "title": "Producto 23",
-        "price": 1299400.0,
-        "category": "celulares",
-        "cuotas": 14
-    },
-    {
-        "image": "https://picsum.photos/300?random=24",
-        "title": "Producto 24",
-        "price": 522500.0,
-        "category": "celulares",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=25",
-        "title": "Producto 25",
-        "price": 1537900.0,
-        "category": "celulares",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=26",
-        "title": "Producto 26",
-        "price": 1620600.0,
-        "category": "herramientas",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=27",
-        "title": "Producto 27",
-        "price": 236800.0,
-        "category": "herramientas",
-        "cuotas": 10
-    },
-    {
-        "image": "https://picsum.photos/300?random=28",
-        "title": "Producto 28",
-        "price": 268700.0,
-        "category": "ropa",
-        "cuotas": 9
-    },
-    {
-        "image": "https://picsum.photos/300?random=29",
-        "title": "Producto 29",
-        "price": 1836400.0,
-        "category": "muebles",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=30",
-        "title": "Producto 30",
-        "price": 699000.0,
-        "category": "electrodomesticos",
-        "cuotas": 21
-    },
-    {
-        "image": "https://picsum.photos/300?random=31",
-        "title": "Producto 31",
-        "price": 1184100.0,
-        "category": "electrodomesticos",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=32",
-        "title": "Producto 32",
-        "price": 1114600.0,
-        "category": "ropa",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=33",
-        "title": "Producto 33",
-        "price": 903600.0,
-        "category": "muebles",
-        "cuotas": 15
-    },
-    {
-        "image": "https://picsum.photos/300?random=34",
-        "title": "Producto 34",
-        "price": 376600.0,
-        "category": "muebles",
-        "cuotas": 10
-    },
-    {
-        "image": "https://picsum.photos/300?random=35",
-        "title": "Producto 35",
-        "price": 1196100.0,
-        "category": "libros",
-        "cuotas": 21
-    },
-    {
-        "image": "https://picsum.photos/300?random=36",
-        "title": "Producto 36",
-        "price": 581100.0,
-        "category": "herramientas",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=37",
-        "title": "Producto 37",
-        "price": 691500.0,
-        "category": "ropa",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=38",
-        "title": "Producto 38",
-        "price": 1955800.0,
-        "category": "muebles",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=39",
-        "title": "Producto 39",
-        "price": 113400.0,
-        "category": "libros",
-        "cuotas": 12
-    },
-    {
-        "image": "https://picsum.photos/300?random=40",
-        "title": "Producto 40",
-        "price": 104700.0,
-        "category": "libros",
-        "cuotas": 7
-    },
-    {
-        "image": "https://picsum.photos/300?random=41",
-        "title": "Producto 41",
-        "price": 255500.0,
-        "category": "celulares",
-        "cuotas": 8
-    },
-    {
-        "image": "https://picsum.photos/300?random=42",
-        "title": "Producto 42",
-        "price": 1199300.0,
-        "category": "herramientas",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=43",
-        "title": "Producto 43",
-        "price": 1234600.0,
-        "category": "celulares",
-        "cuotas": 12
-    },
-    {
-        "image": "https://picsum.photos/300?random=44",
-        "title": "Producto 44",
-        "price": 1321900.0,
-        "category": "libros",
-        "cuotas": 13
-    },
-    {
-        "image": "https://picsum.photos/300?random=45",
-        "title": "Producto 45",
-        "price": 777400.0,
-        "category": "muebles",
-        "cuotas": 13
-    },
-    {
-        "image": "https://picsum.photos/300?random=46",
-        "title": "Producto 46",
-        "price": 1398400.0,
-        "category": "celulares",
-        "cuotas": 23
-    },
-    {
-        "image": "https://picsum.photos/300?random=47",
-        "title": "Producto 47",
-        "price": 1347000.0,
-        "category": "ropa",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=48",
-        "title": "Producto 48",
-        "price": 1022100.0,
-        "category": "ropa",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=49",
-        "title": "Producto 49",
-        "price": 1966000.0,
-        "category": "herramientas",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=50",
-        "title": "Producto 50",
-        "price": 588000.0,
-        "category": "muebles",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=51",
-        "title": "Producto 51",
-        "price": 1313800.0,
-        "category": "celulares",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=52",
-        "title": "Producto 52",
-        "price": 699500.0,
-        "category": "libros",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=53",
-        "title": "Producto 53",
-        "price": 54500.0,
-        "category": "ropa",
-        "cuotas": 6
-    },
-    {
-        "image": "https://picsum.photos/300?random=54",
-        "title": "Producto 54",
-        "price": 743800.0,
-        "category": "muebles",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=55",
-        "title": "Producto 55",
-        "price": 1366500.0,
-        "category": "libros",
-        "cuotas": 24
-    },
-    {
-        "image": "https://picsum.photos/300?random=56",
-        "title": "Producto 56",
-        "price": 1943400.0,
-        "category": "libros",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=57",
-        "title": "Producto 57",
-        "price": 94300.0,
-        "category": "libros",
-        "cuotas": 5
-    },
-    {
-        "image": "https://picsum.photos/300?random=58",
-        "title": "Producto 58",
-        "price": 1630500.0,
-        "category": "electrodomesticos",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=59",
-        "title": "Producto 59",
-        "price": 1512300.0,
-        "category": "libros",
-        "cuotas": 12
-    },
-    {
-        "image": "https://picsum.photos/300?random=60",
-        "title": "Producto 60",
-        "price": 1528700.0,
-        "category": "electrodomesticos",
-        "cuotas": 24
-    },
-    {
-        "image": "https://picsum.photos/300?random=61",
-        "title": "Producto 61",
-        "price": 116500.0,
-        "category": "celulares",
-        "cuotas": 8
-    },
-    {
-        "image": "https://picsum.photos/300?random=62",
-        "title": "Producto 62",
-        "price": 350200.0,
-        "category": "electrodomesticos",
-        "cuotas": 10
-    },
-    {
-        "image": "https://picsum.photos/300?random=63",
-        "title": "Producto 63",
-        "price": 677900.0,
-        "category": "celulares",
-        "cuotas": 14
-    },
-    {
-        "image": "https://picsum.photos/300?random=64",
-        "title": "Producto 64",
-        "price": 1108800.0,
-        "category": "libros",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=65",
-        "title": "Producto 65",
-        "price": 499400.0,
-        "category": "herramientas",
-        "cuotas": 6
-    },
-    {
-        "image": "https://picsum.photos/300?random=66",
-        "title": "Producto 66",
-        "price": 1454600.0,
-        "category": "herramientas",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=67",
-        "title": "Producto 67",
-        "price": 1783200.0,
-        "category": "ropa",
-        "cuotas": 14
-    },
-    {
-        "image": "https://picsum.photos/300?random=68",
-        "title": "Producto 68",
-        "price": 550800.0,
-        "category": "ropa",
-        "cuotas": 16
-    },
-    {
-        "image": "https://picsum.photos/300?random=69",
-        "title": "Producto 69",
-        "price": 721100.0,
-        "category": "libros",
-        "cuotas": 18
-    },
-    {
-        "image": "https://picsum.photos/300?random=70",
-        "title": "Producto 70",
-        "price": 1786500.0,
-        "category": "muebles",
-        "cuotas": 13
-    },
-    {
-        "image": "https://picsum.photos/300?random=71",
-        "title": "Producto 71",
-        "price": 478000.0,
-        "category": "celulares",
-        "cuotas": 9
-    },
-    {
-        "image": "https://picsum.photos/300?random=72",
-        "title": "Producto 72",
-        "price": 1085500.0,
-        "category": "electrodomesticos",
-        "cuotas": 15
-    },
-    {
-        "image": "https://picsum.photos/300?random=73",
-        "title": "Producto 73",
-        "price": 960200.0,
-        "category": "celulares",
-        "cuotas": 20
-    },
-    {
-        "image": "https://picsum.photos/300?random=74",
-        "title": "Producto 74",
-        "price": 1179600.0,
-        "category": "muebles",
-        "cuotas": 12
-    },
-    {
-        "image": "https://picsum.photos/300?random=75",
-        "title": "Producto 75",
-        "price": 1773800.0,
-        "category": "celulares",
-        "cuotas": 15
-    },
-    {
-        "image": "https://picsum.photos/300?random=76",
-        "title": "Producto 76",
-        "price": 1178800.0,
-        "category": "celulares",
-        "cuotas": 22
-    },
-    {
-        "image": "https://picsum.photos/300?random=77",
-        "title": "Producto 77",
-        "price": 1993300.0,
-        "category": "ropa",
-        "cuotas": 17
-    },
-    {
-        "image": "https://picsum.photos/300?random=78",
-        "title": "Producto 78",
-        "price": 126900.0,
-        "category": "herramientas",
-        "cuotas": 9
-    },
-    {
-        "image": "https://picsum.photos/300?random=79",
-        "title": "Producto 79",
-        "price": 528700.0,
-        "category": "celulares",
-        "cuotas": 15
-    },
-    {
-        "image": "https://picsum.photos/300?random=80",
-        "title": "Producto 80",
-        "price": 1952900.0,
-        "category": "herramientas",
-        "cuotas": 17
-    }
+    
+        {
+            "id": 1,
+            "image": "https://picsum.photos/300?random=1",
+            "title": "Producto 1",
+            "price": 1033600.0,
+            "category": "ropa",
+            "cuotas": 13
+        },
+        {
+            "id": 2,
+            "image": "https://picsum.photos/300?random=2",
+            "title": "Producto 2",
+            "price": 959300.0,
+            "category": "muebles",
+            "cuotas": 16
+        },
+        {
+            "id": 3,
+            "image": "https://picsum.photos/300?random=3",
+            "title": "Producto 3",
+            "price": 1048800.0,
+            "category": "celulares",
+            "cuotas": 21
+        },
+        {
+            "id": 4,
+            "image": "https://picsum.photos/300?random=4",
+            "title": "Producto 4",
+            "price": 1640200.0,
+            "category": "muebles",
+            "cuotas": 12
+        },
+        {
+            "id": 5,
+            "image": "https://picsum.photos/300?random=5",
+            "title": "Producto 5",
+            "price": 196500.0,
+            "category": "herramientas",
+            "cuotas": 6
+        },
+        {
+            "id": 6,
+            "image": "https://picsum.photos/300?random=6",
+            "title": "Producto 6",
+            "price": 226800.0,
+            "category": "electrodomesticos",
+            "cuotas": 10
+        },
+        {
+            "id": 7,
+            "image": "https://picsum.photos/300?random=7",
+            "title": "Producto 7",
+            "price": 110100.0,
+            "category": "ropa",
+            "cuotas": 9
+        },
+        {
+            "id": 8,
+            "image": "https://picsum.photos/300?random=8",
+            "title": "Producto 8",
+            "price": 1027700.0,
+            "category": "celulares",
+            "cuotas": 17
+        },
+        {
+            "id": 9,
+            "image": "https://picsum.photos/300?random=9",
+            "title": "Producto 9",
+            "price": 239800.0,
+            "category": "electrodomesticos",
+            "cuotas": 6
+        },
+        {
+            "id": 10,
+            "image": "https://picsum.photos/300?random=10",
+            "title": "Producto 10",
+            "price": 80600.0,
+            "category": "libros",
+            "cuotas": 4
+        },
+        {
+            "id": 11,
+            "image": "https://picsum.photos/300?random=11",
+            "title": "Producto 11",
+            "price": 1399500.0,
+            "category": "ropa",
+            "cuotas": 14
+        },
+        {
+            "id": 12,
+            "image": "https://picsum.photos/300?random=12",
+            "title": "Producto 12",
+            "price": 877600.0,
+            "category": "ropa",
+            "cuotas": 20
+        },
+        {
+            "id": 13,
+            "image": "https://picsum.photos/300?random=13",
+            "title": "Producto 13",
+            "price": 694500.0,
+            "category": "muebles",
+            "cuotas": 24
+        },
+        {
+            "id": 14,
+            "image": "https://picsum.photos/300?random=14",
+            "title": "Producto 14",
+            "price": 1719600.0,
+            "category": "electrodomesticos",
+            "cuotas": 18
+        },
+        {
+            "id": 15,
+            "image": "https://picsum.photos/300?random=15",
+            "title": "Producto 15",
+            "price": 1294600.0,
+            "category": "herramientas",
+            "cuotas": 21
+        },
+        {
+            "id": 16,
+            "image": "https://picsum.photos/300?random=16",
+            "title": "Producto 16",
+            "price": 942400.0,
+            "category": "libros",
+            "cuotas": 22
+        },
+        {
+            "id": 17,
+            "image": "https://picsum.photos/300?random=17",
+            "title": "Producto 17",
+            "price": 1013200.0,
+            "category": "muebles",
+            "cuotas": 24
+        },
+        {
+            "id": 18,
+            "image": "https://picsum.photos/300?random=18",
+            "title": "Producto 18",
+            "price": 1130700.0,
+            "category": "herramientas",
+            "cuotas": 17
+        },
+        {
+            "id": 19,
+            "image": "https://picsum.photos/300?random=19",
+            "title": "Producto 19",
+            "price": 1792600.0,
+            "category": "electrodomesticos",
+            "cuotas": 14
+        },
+        {
+            "id": 20,
+            "image": "https://picsum.photos/300?random=20",
+            "title": "Producto 20",
+            "price": 1314600.0,
+            "category": "herramientas",
+            "cuotas": 13
+        },
+        {
+            "id": 21,
+            "image": "https://picsum.photos/300?random=21",
+            "title": "Producto 21",
+            "price": 1626200.0,
+            "category": "ropa",
+            "cuotas": 22
+        },
+        {
+            "id": 22,
+            "image": "https://picsum.photos/300?random=22",
+            "title": "Producto 22",
+            "price": 1950300.0,
+            "category": "electrodomesticos",
+            "cuotas": 15
+        },
+        {
+            "id": 23,
+            "image": "https://picsum.photos/300?random=23",
+            "title": "Producto 23",
+            "price": 1299400.0,
+            "category": "celulares",
+            "cuotas": 14
+        },
+        {
+            "id": 24,
+            "image": "https://picsum.photos/300?random=24",
+            "title": "Producto 24",
+            "price": 522500.0,
+            "category": "celulares",
+            "cuotas": 16
+        },
+        {
+            "id": 25,
+            "image": "https://picsum.photos/300?random=25",
+            "title": "Producto 25",
+            "price": 1537900.0,
+            "category": "celulares",
+            "cuotas": 16
+        }
+   
+    
+    
 ]

@@ -1,14 +1,20 @@
 import React from "react";
 import "../css/ProductCard.css";
-export default function ProductCards({ image, title, price }) {
+import { Link } from "react-router-dom";
+export default function ProductCards({id, image, title, price }) {
+
+
   return (
     <div className="product-card">
       <img src={image} alt={title} className="product-image" />
       <div className="product-details">
         <h3 className="product-title">{title}</h3>
-        <p className="product-price">${price}</p>
+        <p className="product-price-start">${price}</p>
       </div>
-      <button className="add-to-cart">Agregar al carrito</button>
+      <Link to={`/detailsproduct/${id}`}> 
+        <button className="add-to-cart">Agregar al carrito</button>
+      </Link>
     </div>
+    
   );
 }

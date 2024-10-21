@@ -105,6 +105,7 @@ export default function Main() {
           ? filteredProductsPerPage.map((product, index) => (
               <ProductCards
                 key={index}
+                id={product.id}
                 image={product.image}
                 title={product.title}
                 price={product.price}
@@ -113,6 +114,7 @@ export default function Main() {
           : currentProducts.map((product, index) => (
               <ProductCards
                 key={index}
+                id={product.id}
                 image={product.image}
                 title={product.title}
                 price={product.price}
