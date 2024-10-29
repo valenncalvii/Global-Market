@@ -7,135 +7,79 @@ import "../css/ProductCard.css";
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filterCategory, setFilterCategory] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);//estado de paginas
+  const [filterCategory, setFilterCategory] = useState("");//estado de filtro
+  const [filterPriceRange, setFilterPriceRange] = useState(null); // Estado para rango de precios
 
-  // Calcular el índice de inicio y fin de los productos a mostrar
+  // Función para filtrar productos por categoría y rango de precio
+  const filterProducts = () => {
+    let filtered = products;
+
+    // Filtrar por categoría si está seleccionada
+    if (filterCategory) {
+      filtered = filtered.filter((product) => product.category === filterCategory);
+    }
+
+    // Filtrar por rango de precio si está seleccionado
+    if (filterPriceRange) {
+      const [min, max] = filterPriceRange;
+      filtered = filtered.filter((product) => product.price >= min && product.price <= max);
+    }
+
+    return filtered;
+  };
+
+  const filteredProducts = filterProducts();
+  //para la paginacion que muestre la cant de paginas
+  const totalFilteredPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  //para mostrar en pantalla 9 productos
   const indexOfLastProduct = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  ); //currentProduct es un array
-  // Calcular el número total de páginas
-  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
-
-  //FILTRO DE PRODUCTOS
-  const filteredProducts = products.filter((product) =>
-    filterCategory ? product.category === filterCategory : true
-  );
-  //mostrar 9 productos del filteredProducts
-  const filteredProductsPerPage = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-  //calcular el numero total de paginas por producto filtrado
-  const totalFilteredPages = Math.ceil(
-    filteredProducts.length / ITEMS_PER_PAGE
-  );
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
     <main className="main-container">
-      {/* Aquí va el contenido principal de la página, como los productos */}
       <aside className="filter-container">
         <div className="filter-product-box">
-          {" "}
-          <h3>Categorias</h3>
-          {/* Filtro por categoría */}
+          <h3>Categorías</h3>
           <ul>
-            <li>
-              <button onClick={() => setFilterCategory("celulares")}>
-                <span>Celulares</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("ropa")}>
-                <span>Ropa</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("muebles")}>
-                <span>Muebles</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("electrodomesticos")}>
-                <span>Electrodomésticos</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("libros")}>
-                <span>Libros</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("herramientas")}>
-                <span>Herramientas</span>
-              </button>
-            </li>
+            <li><button onClick={() => setFilterCategory("celulares")}>Celulares</button></li>
+            <li><button onClick={() => setFilterCategory("ropa")}>Ropa</button></li>
+            <li><button onClick={() => setFilterCategory("muebles")}>Muebles</button></li>
+            <li><button onClick={() => setFilterCategory("electrodomesticos")}>Electrodomésticos</button></li>
+            <li><button onClick={() => setFilterCategory("libros")}>Libros</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas")}>Herramientas</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Todas</button></li>
           </ul>
-          <h3>Precios</h3>
-          {/* Filtro por categoría */}
+
+          <h3>Rango de Precios</h3>
           <ul>
-            <li>
-              <button onClick={() => setFilterCategory("")}>
-                <span>200k</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("ropa")}>
-                <span>200k-400k</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("muebles")}>
-                <span>400k-600k</span>
-              </button>
-            </li>
-            <li>
-              <button onClick={() => setFilterCategory("electrodomesticos")}>
-                <span>600k-1000k</span>
-              </button>
-            </li>
+            <li><button onClick={() => setFilterPriceRange([0, 200000])}>Hasta 200k</button></li>
+            <li><button onClick={() => setFilterPriceRange([200000, 400000])}>200k - 400k</button></li>
+            <li><button onClick={() => setFilterPriceRange([400000, 600000])}>400k - 600k</button></li>
+            <li><button onClick={() => setFilterPriceRange([600000, 1000000])}>600k - 1M</button></li>
+            <li><button onClick={() => setFilterPriceRange(null)}>Todos</button></li>
           </ul>
         </div>
       </aside>
+
       <section className="product-list">
-        {filterCategory //aca muestra los productos filtrados si filtercategory tiene algo, sino muestra todos los productos
-          ? filteredProductsPerPage.map((product, index) => (
-              <ProductCards
-                key={index}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                price={product.price}
-              />
-            ))
-          : currentProducts.map((product, index) => (
-              <ProductCards
-                key={index}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                price={product.price}
-              />
-            ))}
+        {currentProducts.map((product) => (
+          <ProductCards
+            key={product.id}
+            id={product.id}
+            image={product.image}
+            title={product.title}
+            price={product.price}
+          />
+        ))}
+
         <div className="pagination-container" style={{ gridColumn: "1/-1" }}>
-          {" "}
-          {/*ocupa toda la fila*/}
-          {filterCategory ? (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalFilteredPages}
-              onPageChange={setCurrentPage}
-            />
-          ) : (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          )}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalFilteredPages}
+            onPageChange={setCurrentPage}
+          />
         </div>
       </section>
     </main>
