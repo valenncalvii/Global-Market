@@ -42,7 +42,7 @@ export default function DetailsProduct() {
         <button className="buy-button">Comprar Ahora</button>
         
         {/* Botón para abrir el modal de métodos de pago */}
-        <button onClick={() => setIsModalOpen(true)}>Medios de pago</button>
+        <button className='modal-button' onClick={() => setIsModalOpen(true)}>Medios de pago</button>
         
         {/* Modal de métodos de pago */}
         <Modal 

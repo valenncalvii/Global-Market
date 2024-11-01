@@ -63,3 +63,14 @@
 .buy-button:hover {
   background-color: #2ecc71;
 }
+
+.modal-button{
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+.modal-button:hover{
+  color: #0056b3;
+}
