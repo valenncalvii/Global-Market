@@ -14,14 +14,14 @@ export default function Header({ showCategories }) {
           <ul className="nav-links">
            
             <li>
-               <Link to={"/products"}><a href="#">Inicio</a> </Link>
+               <Link to={"/"}><a href="#">Inicio</a> </Link>
             </li>
            
             <li>
-              <a href="#">Carrito</a>
+             <Link to={"/login"}> <a href="#">Ingresar</a></Link>
             </li>
             <li>
-              <a href="#">Perfil</a>
+              <Link to={"/cart"}><a href="#"><span className="material-symbols-outlined">shopping_cart</span></a></Link>
             </li>
           </ul>
         </nav>

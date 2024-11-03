@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useCallback, useContext } from 'react'
 import products from "../productos.json";
 import { useParams } from 'react-router-dom';// permite acceder a los parámetros dinámicos de la URL en componentes
 import { useState } from 'react';
 import "../css/DetailsProduct.css";
 import Modal from './Modal';
-
+import { CartContext } from '../context/CartContext';
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
   const product = products.find((p) => p.id === parseInt(id)); // Buscamos el producto por su id
+  const { addToCart } = useContext(CartContext)
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad de la modal
   const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"]; // Opciones de pago disponibles
 
@@ -44,6 +45,10 @@ export default function DetailsProduct() {
         {/* Botón para abrir el modal de métodos de pago */}
         <button className='modal-button' onClick={() => setIsModalOpen(true)}>Medios de pago</button>
         
+        {/* Botón de Agregar al Carrito */}
+        <button onClick={() => addToCart(product)} className="add-to-cart-button">
+          Agregar al Carrito
+        </button>
         {/* Modal de métodos de pago */}
         <Modal 
           isOpen={isModalOpen} 

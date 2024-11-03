@@ -19,13 +19,6 @@ export default function Main() {
     if (filterCategory) {
       filtered = filtered.filter((product) => product.category === filterCategory);
     }
-
-    // Filtrar por rango de precio si está seleccionado
-    if (filterPriceRange) {
-      const [min, max] = filterPriceRange;
-      filtered = filtered.filter((product) => product.price >= min && product.price <= max);
-    }
-
     return filtered;
   };
 
@@ -41,24 +34,25 @@ export default function Main() {
     <main className="main-container">
       <aside className="filter-container">
         <div className="filter-product-box">
-          <h3>Categorías</h3>
+          <h3>Construccion</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("celulares")}>Celulares</button></li>
-            <li><button onClick={() => setFilterCategory("ropa")}>Ropa</button></li>
-            <li><button onClick={() => setFilterCategory("muebles")}>Muebles</button></li>
-            <li><button onClick={() => setFilterCategory("electrodomesticos")}>Electrodomésticos</button></li>
-            <li><button onClick={() => setFilterCategory("libros")}>Libros</button></li>
-            <li><button onClick={() => setFilterCategory("herramientas")}>Herramientas</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Todas</button></li>
+            <li><button onClick={() => setFilterCategory("celulares")}>Sanitarios</button></li>
+            <li><button onClick={() => setFilterCategory("ropa")}>Materiales</button></li>
+            <li><button onClick={() => setFilterCategory("muebles")}>Herramientas varias</button></li>
           </ul>
 
-          <h3>Rango de Precios</h3>
+          <h3>Ferreteria</h3>
           <ul>
-            <li><button onClick={() => setFilterPriceRange([0, 200000])}>Hasta 200k</button></li>
-            <li><button onClick={() => setFilterPriceRange([200000, 400000])}>200k - 400k</button></li>
-            <li><button onClick={() => setFilterPriceRange([400000, 600000])}>400k - 600k</button></li>
-            <li><button onClick={() => setFilterPriceRange([600000, 1000000])}>600k - 1M</button></li>
-            <li><button onClick={() => setFilterPriceRange(null)}>Todos</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Herramientas de corte</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Herramientas de fijacion</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Herramientas de mano</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Herramientas electricas</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Herrajes y herraduras</button></li>
+          </ul>
+          <h3>Hogar</h3>
+          <ul>
+            <li><button onClick={() => setFilterCategory("")}>Jardin y Camping</button></li>
+            <li><button onClick={() => setFilterCategory("")}>Piletas</button></li>
           </ul>
         </div>
       </aside>
