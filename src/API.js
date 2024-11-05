@@ -1,0 +1,1 @@
+const API_URL = "https://localhost:7078/swagger/v1/swagger.json"

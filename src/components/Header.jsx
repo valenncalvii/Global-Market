@@ -2,14 +2,14 @@ import React from "react";
 import logo from "../assets/logo.png";
 import "../css/Header.css";
 import { Link } from "react-router-dom";
-export default function Header({ showCategories }) {
+export default function Header() {
   return (
     <header className="header-container">
       <div className="logo">
         <img src={logo} alt="Logo" />
         <h1>Global Market</h1>
       </div>
-      {showCategories && (
+      
         <nav className="navbar">
           <ul className="nav-links">
            
@@ -25,7 +25,7 @@ export default function Header({ showCategories }) {
             </li>
           </ul>
         </nav>
-      )}
+      
     </header>
   );
 }

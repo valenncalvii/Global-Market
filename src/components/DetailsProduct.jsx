@@ -4,19 +4,22 @@ import { useParams } from 'react-router-dom';// permite acceder a los parámetro
 import { useState } from 'react';
 import "../css/DetailsProduct.css";
 import Modal from './Modal';
-import { CartContext } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
   const product = products.find((p) => p.id === parseInt(id)); // Buscamos el producto por su id
-  const { addToCart } = useContext(CartContext)
+  const { cart, toggleCart } = useCart()
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad de la modal
+  const [isClicked, setIsClicked] = useState(false);//estado para cambiar clase de boton
   const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"]; // Opciones de pago disponibles
 
   // Verifica si el producto existe, si no muestra un mensaje
   if (!product) {
     return <p>Producto no encontrado</p>;
   }
+
+  const isInCart = cart.some((item) => item.id === product.id);
 
   return (
     <main className="product-details-container">
@@ -45,9 +48,12 @@ export default function DetailsProduct() {
         {/* Botón para abrir el modal de métodos de pago */}
         <button className='modal-button' onClick={() => setIsModalOpen(true)}>Medios de pago</button>
         
-        {/* Botón de Agregar al Carrito */}
-        <button onClick={() => addToCart(product)} className="add-to-cart-button">
-          Agregar al Carrito
+       {/* Botón de Agregar/Quitar al Carrito */}
+       <button
+          onClick={() => toggleCart(product)}
+          className={`cart-button ${isInCart ? "in-cart" : ""}`}
+        >
+          {isInCart ? "Quitar del Carrito" : "Agregar al Carrito"}
         </button>
         {/* Modal de métodos de pago */}
         <Modal 

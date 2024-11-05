@@ -45,7 +45,7 @@
 .product-price {
   font-weight: bold;
   font-size: 1.5rem;
-  color: #e74c3c;
+  
 }
 
 .buy-button {
@@ -73,4 +73,23 @@
 }
 .modal-button:hover{
   color: #0056b3;
+}
+
+.cart-button{
+  border: none;
+  margin-top: 10px;
+  background-color: #2d87e7;
+  color: white;
+  border-radius: 5%;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+.cart-button:hover{
+  background-color: #3094ff;
+}
+
+.cart-button.in-cart{
+  background-color: white;
+  border:solid 1px black;
+  color: black;
 }
