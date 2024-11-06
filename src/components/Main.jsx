@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import ProductCards from "./ProductCards";
 import axios from "axios";
 import Pagination from "./pagination";
-import API_URL from "../API"
+import API_URL from "../API";
 import "../css/ProductCard.css";
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
-  const [currentPage, setCurrentPage] = useState(1);//estado de paginas
-  const [filterCategory, setFilterCategory] = useState("");//estado de filtro
-
+  const [currentPage, setCurrentPage] = useState(1); // Estado de páginas
+  const [filterCategory, setFilterCategory] = useState(""); // Estado de filtro
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
@@ -24,7 +23,8 @@ export default function Main() {
     };
     obtenerProductos();
   }, []);
-  console.log(productos)
+  console.log(productos);
+
   // Función para filtrar productos por categoría
   const filterProducts = () => {
     let filtered = productos;
@@ -37,9 +37,11 @@ export default function Main() {
   };
 
   const filteredProducts = filterProducts();
-  //para la paginacion que muestre la cant de paginas
+
+  // Para la paginación que muestre la cantidad de páginas
   const totalFilteredPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-  //para mostrar en pantalla 9 productos
+
+  // Para mostrar en pantalla 9 productos
   const indexOfLastProduct = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -48,39 +50,44 @@ export default function Main() {
     <main className="main-container">
       <aside className="filter-container">
         <div className="filter-product-box">
-          <h3>Construccion</h3>
+          <h3>Construcción</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("celulares")}>Sanitarios</button></li>
-            <li><button onClick={() => setFilterCategory("ropa")}>Materiales</button></li>
-            <li><button onClick={() => setFilterCategory("muebles")}>Herramientas varias</button></li>
+            <li><button onClick={() => setFilterCategory("sanitarios")}>Sanitarios</button></li>
+            <li><button onClick={() => setFilterCategory("materiales")}>Materiales</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas")}>Herramientas varias</button></li>
           </ul>
 
-          <h3>Ferreteria</h3>
+          <h3>Ferretería</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("")}>Herramientas de corte</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Herramientas de fijacion</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Herramientas de mano</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Herramientas electricas</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Herrajes y herraduras</button></li>
+            <li><button onClick={() => setFilterCategory("corte")}>Herramientas de corte</button></li>
+            <li><button onClick={() => setFilterCategory("fijacion")}>Herramientas de fijación</button></li>
+            <li><button onClick={() => setFilterCategory("mano")}>Herramientas de mano</button></li>
+            <li><button onClick={() => setFilterCategory("electricas")}>Herramientas eléctricas</button></li>
+            <li><button onClick={() => setFilterCategory("herrajes")}>Herrajes y herraduras</button></li>
           </ul>
+          
           <h3>Hogar</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("")}>Jardin y Camping</button></li>
-            <li><button onClick={() => setFilterCategory("")}>Piletas</button></li>
+            <li><button onClick={() => setFilterCategory("jardin")}>Jardín y Camping</button></li>
+            <li><button onClick={() => setFilterCategory("piletas")}>Piletas</button></li>
           </ul>
         </div>
       </aside>
 
       <section className="product-list">
-        {productos.map((product) => (
-          <ProductCards
-            key={product.id}
-            id={product.id}
-            image={product.image}
-            title={product.title}
-            price={product.price}
-          />
-        ))}
+        {currentProducts.length > 0 ? (
+          currentProducts.map((product) => (
+            <ProductCards
+              key={product.id}
+              id={product.id}
+              image={product.image}
+              title={product.title}
+              price={product.price}
+            />
+          ))
+        ) : (
+          <p>No se encontraron productos para esta categoría.</p>
+        )}
 
         <div className="pagination-container" style={{ gridColumn: "1/-1" }}>
           <Pagination

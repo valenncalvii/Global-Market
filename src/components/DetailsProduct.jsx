@@ -1,6 +1,5 @@
-import React, { useCallback, useContext } from 'react'
-import { useParams } from 'react-router-dom';// permite acceder a los parámetros dinámicos de la URL en componentes
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom'; 
 import "../css/DetailsProduct.css";
 import Modal from './Modal';
 import { useCart } from '../context/CartContext';
@@ -9,34 +8,45 @@ import axios from 'axios';
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
-
-  const { cart, toggleCart } = useCart()
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad de la modal
-  const [isClicked, setIsClicked] = useState(false);//estado para cambiar clase de boton
-  const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"]; // Opciones de pago disponibles
-  const [productos, setProductos] = useState([]);
-  const [product, setProduct] = useState(null); // Usamos estado para almacenar el producto que buscamos
+  const { cart, toggleCart } = useCart();
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad del modal
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // Estado para almacenar el método de pago seleccionado
+  const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"];
+  const [product, setProduct] = useState(null);
+  const navigate = useNavigate(); // Hook para redirigir
+  const location = useLocation(); // Captura la URL de la página actual
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de si el usuario está logueado
 
   useEffect(() => {
-    const obtenerProductos = async () => {
+    const obtenerProducto = async () => {
       try {
         const response = await axios.get(`${API_URL}/products/${id}`);
-        setProduct(response.data); // Actualiza el estado con los datos de la API
-        console.log(product)
+        setProduct(response.data);
+        console.log("Producto obtenido:", response.data);
       } catch (error) {
-        console.error("Error al obtener productos:", error);
+        console.error("Error al obtener producto:", error);
       }
     };
-    obtenerProductos();
-  }, []);
-  useEffect(() => {
-    const foundProduct = productos.find((p) => p.id === parseInt(id));
-    setProduct(foundProduct); // Buscamos el producto en el estado `products`
-  }, [id, productos]); // Vuelve a ejecutar cuando `id` o `products` cambian
- 
+    obtenerProducto();
+  }, [id]);
 
+  // Función para manejar la selección de un método de pago desde el modal
+  const handleSelectPaymentMethod = (method) => {
+    setSelectedPaymentMethod(method);
+    setIsModalOpen(false); // Cerrar el modal después de seleccionar
+  };
 
-  // Verifica si el producto existe, si no muestra un mensaje
+  // Redirigir al login si no está logueado y pasar la URL actual para redirigir después
+  const handleBuyNow = () => {
+    if (!isLoggedIn) {
+      // Redirige a login, pasando la URL actual como "state"
+      navigate("/login", { state: { from: location.pathname } });
+    } else {
+      // Si está logueado, procede con la compra
+      console.log("Proceder con la compra");
+    }
+  };
+
   if (!product) {
     return <p>Producto no encontrado</p>;
   }
@@ -54,43 +64,47 @@ export default function DetailsProduct() {
       <article className="product-info">
         <h1>{product.titulo}</h1>
         <p className="product-category">Categoría: {product.category}</p>
-        
-        {/* Lista de detalles específicos */}
+
         <ul className="product-details-list">
           <li>Detalle 1</li>
           <li>Detalle 2</li>
         </ul>
-        
+
         <p className="product-price">Precio: ${product.precio}</p>
         <p className="product-cuotas">Unidades: {product.unidades} Unidades</p>
-        
+
         {/* Botón de compra */}
-        <button className="buy-button">Comprar Ahora</button>
-        
+        <button className="buy-button" onClick={handleBuyNow}>Comprar Ahora</button>
+
         {/* Botón para abrir el modal de métodos de pago */}
-        <button className='modal-button' onClick={() => setIsModalOpen(true)}>Medios de pago</button>
-        
-       {/* Botón de Agregar/Quitar al Carrito */}
-       <button
+        <button className="modal-button" onClick={() => setIsModalOpen(true)}>Medios de pago</button>
+
+        {/* Botón de Agregar/Quitar al Carrito */}
+        <button
           onClick={() => toggleCart(product)}
           className={`cart-button ${isInCart ? "in-cart" : ""}`}
         >
           {isInCart ? "Quitar del Carrito" : "Agregar al Carrito"}
         </button>
+
+        {/* Mostrar el método de pago seleccionado */}
+        {selectedPaymentMethod && (
+          <p className="selected-payment-method">Método de pago seleccionado: {selectedPaymentMethod}</p>
+        )}
+
         {/* Modal de métodos de pago */}
         <Modal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
           paymentMethods={paymentMethods}
+          onSelectPaymentMethod={handleSelectPaymentMethod}
         />
       </article>
 
       {/* Sección de detalles adicionales del producto */}
       <section className="details-container">
         <h2>Detalles</h2>
-        <p>
-          {product.descripcion}
-        </p>
+        <p>{product.descripcion}</p>
       </section>
     </main>
   );

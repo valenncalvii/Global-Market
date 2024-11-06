@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "../css/Modal.css"; 
 
-export default function Modal({ isOpen, onClose, paymentMethods }) {
+export default function Modal({ isOpen, onClose, paymentMethods, onSelectPaymentMethod }) {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
@@ -12,7 +12,9 @@ export default function Modal({ isOpen, onClose, paymentMethods }) {
         <h2>Medios de Pago</h2>
         <ul>
           {paymentMethods.map((method, index) => (
-            <li key={index}>{method}</li>
+            <li key={index} onClick={() => onSelectPaymentMethod(method)}>
+              {method}
+            </li>
           ))}
         </ul>
       </div>
