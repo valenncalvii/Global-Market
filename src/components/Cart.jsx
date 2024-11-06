@@ -22,7 +22,7 @@ export default function Cart() {
             <li key={index} className="cart-list">
               
               <img className="cart-img" src={product.image} alt={product.title} />
-              <h4>{product.title}</h4>
+              <h4>{product.titulo}</h4>
               <div>${product.price.toLocaleString()}</div> 
             </li>
           ))}

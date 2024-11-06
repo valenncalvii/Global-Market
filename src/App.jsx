@@ -9,9 +9,10 @@ import Cart from "./components/Cart";
 
 function App() {
   return (
-    
+    <div className="app-container">
     <Router>
       <Header showCategories={window.location.pathname === "/"} />
+      <div className="main-content">
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
@@ -19,9 +20,10 @@ function App() {
         <Route path="/detailsproduct/:id" element={<DetailsProduct />}></Route>
         <Route path="/cart" element={<Cart />} />
       </Routes>
-      <Footer />
+      </div>
     </Router>
-    
+    <Footer />
+    </div>
   );
 }
 

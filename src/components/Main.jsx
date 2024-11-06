@@ -1,19 +1,33 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCards from "./ProductCards";
-import products from "../productos.json";
+import axios from "axios";
 import Pagination from "./pagination";
+import API_URL from "../API"
 import "../css/ProductCard.css";
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
   const [currentPage, setCurrentPage] = useState(1);//estado de paginas
   const [filterCategory, setFilterCategory] = useState("");//estado de filtro
-  const [filterPriceRange, setFilterPriceRange] = useState(null); // Estado para rango de precios
 
-  // Función para filtrar productos por categoría y rango de precio
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/products`);
+        setProductos(response.data); // Actualiza el estado con los datos de la API
+      } catch (error) {
+        console.error("Error al obtener productos:", error);
+      }
+    };
+    obtenerProductos();
+  }, []);
+  console.log(productos)
+  // Función para filtrar productos por categoría
   const filterProducts = () => {
-    let filtered = products;
+    let filtered = productos;
 
     // Filtrar por categoría si está seleccionada
     if (filterCategory) {
@@ -58,7 +72,7 @@ export default function Main() {
       </aside>
 
       <section className="product-list">
-        {currentProducts.map((product) => (
+        {productos.map((product) => (
           <ProductCards
             key={product.id}
             id={product.id}

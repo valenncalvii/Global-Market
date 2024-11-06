@@ -1,18 +1,40 @@
 import React, { useCallback, useContext } from 'react'
-import products from "../productos.json";
 import { useParams } from 'react-router-dom';// permite acceder a los parámetros dinámicos de la URL en componentes
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "../css/DetailsProduct.css";
 import Modal from './Modal';
 import { useCart } from '../context/CartContext';
+import API_URL from '../API';
+import axios from 'axios';
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
-  const product = products.find((p) => p.id === parseInt(id)); // Buscamos el producto por su id
+
   const { cart, toggleCart } = useCart()
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad de la modal
   const [isClicked, setIsClicked] = useState(false);//estado para cambiar clase de boton
   const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"]; // Opciones de pago disponibles
+  const [productos, setProductos] = useState([]);
+  const [product, setProduct] = useState(null); // Usamos estado para almacenar el producto que buscamos
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/products/${id}`);
+        setProduct(response.data); // Actualiza el estado con los datos de la API
+        console.log(product)
+      } catch (error) {
+        console.error("Error al obtener productos:", error);
+      }
+    };
+    obtenerProductos();
+  }, []);
+  useEffect(() => {
+    const foundProduct = productos.find((p) => p.id === parseInt(id));
+    setProduct(foundProduct); // Buscamos el producto en el estado `products`
+  }, [id, productos]); // Vuelve a ejecutar cuando `id` o `products` cambian
+ 
+
 
   // Verifica si el producto existe, si no muestra un mensaje
   if (!product) {
@@ -25,12 +47,12 @@ export default function DetailsProduct() {
     <main className="product-details-container">
       {/* Sección de imagen del producto */}
       <section className="product-selected-image">
-        <img src={product.image} alt={product.title} />
+        <img src={product.image} alt={product.titulo} />
       </section>
 
       {/* Sección de información principal del producto */}
       <article className="product-info">
-        <h1>{product.title}</h1>
+        <h1>{product.titulo}</h1>
         <p className="product-category">Categoría: {product.category}</p>
         
         {/* Lista de detalles específicos */}
@@ -39,8 +61,8 @@ export default function DetailsProduct() {
           <li>Detalle 2</li>
         </ul>
         
-        <p className="product-price">Precio: ${product.price.toLocaleString()}</p>
-        <p className="product-cuotas">Cuotas: {product.cuotas} cuotas</p>
+        <p className="product-price">Precio: ${product.precio}</p>
+        <p className="product-cuotas">Unidades: {product.unidades} Unidades</p>
         
         {/* Botón de compra */}
         <button className="buy-button">Comprar Ahora</button>
@@ -67,14 +89,7 @@ export default function DetailsProduct() {
       <section className="details-container">
         <h2>Detalles</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quos officia voluptas quae, cum quas eos,
-          corrupti sunt, voluptates aspernatur facere eius voluptatibus aperiam ullam veniam. Dolor quae commodi eos! 
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga perferendis doloremque maxime suscipit quaerat 
-          quibusdam cupiditate. Ipsum dolorum modi aperiam, soluta eos expedita commodi. Commodi ipsam ipsa veniam nulla 
-          asperiores? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus id sunt ad perspiciatis rerum
-          ea sed deleniti, veniam optio maxime cum quae minima dolor voluptatum, aspernatur eos reprehenderit ratione 
-          accusamus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore nam est, nobis tempora ipsam 
-          eveniet nesciunt corporis at iste, dolores atque? Beatae iste explicabo amet! Nemo nobis vitae voluptatibus vel.
+          {product.descripcion}
         </p>
       </section>
     </main>
