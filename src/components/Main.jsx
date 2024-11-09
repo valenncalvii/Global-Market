@@ -81,8 +81,8 @@ export default function Main() {
               key={product.id}
               id={product.id}
               image={product.image}
-              title={product.title}
-              price={product.price}
+              title={product.titulo}
+              price={product.precio}
             />
           ))
         ) : (

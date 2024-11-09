@@ -48,14 +48,22 @@ header {
   color: #007bff;
 }
 .app-container{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
-.main-content{
-  flex: 1;
+.header{
+  grid-row: 1;
 }
+.main-content{
+  grid-row: 2;
+  padding-bottom: 20px;
+}
+.footer{
+  grid-row: 3;
+}
+
 /*footer*/
 .footer-container {
   background-color: var(--color-fondo);
@@ -63,6 +71,7 @@ header {
   text-align: center;
   border-top: 1px solid #e7e7e7;
   color: #333;
+  margin: 0;
 }
 
 .footer-container p {

@@ -17,6 +17,7 @@ export default function DetailsProduct() {
   const location = useLocation(); // Captura la URL de la página actual
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de si el usuario está logueado
 
+  //funcion para llamar a la api y obtener producto
   useEffect(() => {
     const obtenerProducto = async () => {
       try {
