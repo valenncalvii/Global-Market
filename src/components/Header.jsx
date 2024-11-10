@@ -14,14 +14,14 @@ export default function Header() {
           <ul className="nav-links">
            
             <li>
-               <Link to={"/"}><a href="#">Inicio</a> </Link>
+               <Link to={"/"}>Inicio </Link>
             </li>
            
             <li>
-             <Link to={"/login"}> <a href="#">Ingresar</a></Link>
+             <Link to={"/login"}>Ingresar</Link>
             </li>
             <li>
-              <Link to={"/cart"}><a href="#"><span className="material-symbols-outlined">shopping_cart</span></a></Link>
+              <Link to={"/cart"}><span className="material-symbols-outlined">shopping_cart</span></Link>
             </li>
           </ul>
         </nav>
