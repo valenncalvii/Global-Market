@@ -75,6 +75,84 @@
   color: #0056b3;
 }
 
+.cart {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  h2 {
+    font-family: 'Verdana', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #195ebf;
+    text-align: center;
+    position: relative;
+    padding-bottom: 5px;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #195ebf;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  h2:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.cart-bar {
+  display: grid;
+  gap: 10px;
+  color: #000000;
+}
+.cart-bar h3 {
+  font-size: 16px;
+}
+.cart-list {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.cart-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.cart-list h4 {
+  font-size: 20px;
+  color: rgba(13, 99, 148, 0.786);
+  font-weight: 500;
+}
+.cart-list div {
+  font-size: 15px;
+  color: #333;
+}
+.cart-list button {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.cart-list button:hover {
+  background-color: #c0392b;
+}
 .cart-button{
   border: none;
   margin-top: 10px;
@@ -91,5 +169,41 @@
 .cart-button.in-cart{
   background-color: white;
   border:solid 1px black;
-  color: black;
+  color:#000;
+}
+div.control-units{
+  span{
+    padding: 10px;
+    font-size: large;
+    color:#000;
+  }
+  button{
+  background-color: #195ebf;
+ }
+}
+.cart-buy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+.cart-buy-total p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+.cart-buy-button {
+  background-color: #2ecc71;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.cart-buy-button:hover {
+  background-color: #27ae60;
 }

@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import "../css/cart.css";
+
 export default function Cart() {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart, addToCart } = useContext(CartContext);
 
  // Calcular el total de compra
- const total = cart.reduce((acc, product) => acc + product.precio, 0);
-
+ const total = cart.reduce(
+  (acc, product) => acc + product.precio * (product.cantidad || 1),
+  0
+);
   return (
     <div className="cart">
       <h2>Carrito de Compras</h2>
@@ -26,17 +29,22 @@ export default function Cart() {
           
             <li key={index} className="cart-list">
               
-              <img className="cart-img" src={product.image} alt={product.title} />
+              <img className="cart-img" src={product.image} alt={`Imagen de ${product.titulo}`} />
               <h4>{product.titulo}</h4>
               <div>${product.precio}</div> 
-              <div>${product.precio}</div> {/* Subtotal */}
+              <div>${product.precio * (product.cantidad || 1)}</div> 
+              <div>{product.cantidad || 1}</div>
+              <div className="control-units">
+                  <button onClick={() => removeFromCart(product.id)}>-</button>
+                  <span>{product.cantidad}</span>
+                  <button onClick={() => addToCart(product)}>+</button>
+                </div>
             </li>
           ))}
         </ul>
         <section className="cart-buy">
           <div className="cart-buy-total">
-            <p>El total de compra es: ${total}
-            </p>
+          <p>El total de compra es: ${total.toFixed(2)}</p>
           </div>
           <button className="cart-buy-button">Comprar todo</button>
         </section>
