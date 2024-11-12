@@ -29,7 +29,7 @@ export default function Cart() {
           
             <li key={index} className="cart-list">
               
-              <img className="cart-img" src={product.image} alt={`Imagen de ${product.titulo}`} />
+              <img className="cart-img" src={product.url} alt={`Imagen de ${product.titulo}`} />
               <h4>{product.titulo}</h4>
               <div>${product.precio}</div> 
               <div>${product.precio * (product.cantidad || 1)}</div> 
