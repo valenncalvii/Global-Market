@@ -1,15 +1,17 @@
-
-
 .register-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 65vh; 
+    height: 65vh;
     background-color: #f5f5f5;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
   
 h2 {
@@ -79,4 +81,48 @@ input:focus {
 .error-message {
     color: red; 
     margin-top: 10px; 
+}
+
+@media (max-width: 490px) {
+  
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    input, .register-button {
+        font-size: auto;
+        padding: 8px;
+    }
+    .form-group label, .login-link{
+        font-size: 0.9rem;
+        padding: auto;
+    }
+
+    .login-link {
+        font-size: 0.7rem;
+    }
+
+
+}
+
+@media (max-width: 320px) {
+
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    .register-button {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+        padding: auto;
+
+    }
+    input {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
 }
