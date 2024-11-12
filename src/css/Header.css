@@ -1,51 +1,80 @@
-html, body, #root{
-  --color-fondo:#f8f8f8;
-  --font-family: "Kanit", sans-serif;
-  height: 100%;
+*{
+  padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+html, body{
+  width: 100%;
+  height: 100%;
+  background-color: #7d7d7d;
+}
+#root
+{
+  --color-fondo:#f4f4f4;
+  --font-family: "Kanit", sans-serif;
+}
+.app-container{
+  background-color: #007bff;
 }
 /*header*/
 header {
-  background-color: var(--color-fondo);
-  color: black;
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.792);
+  color: #333;
+  width: 100%;
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: var(--font-family);
+  position: relative;
 }
-.logo{
-  display: flex;
-}
-.logo img {
-  height: 90px;
-  width: auto;
-}
-.logo h1{
-  font-weight: 300;
-}
-.navbar{
+.header-container .logo {
   display: flex;
   align-items: center;
 }
+.header-container .logo img {
+  width: 50%;
+  height: auto;
+  margin-right: 10px;
+}
+.header-container .logo h1 {
+  font-size: auto;
+  font-weight: bold;
+}
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+}
 .nav-links {
   list-style: none;
-  padding: 0;
+  padding: 10px;
+  display: flex;
 }
 
 .nav-links li {
   display: inline;
-  margin: 0 15px;
+  margin-left: 20px;
 }
 
 .nav-links li a {
   color: black;
+  padding: 10px;
   text-decoration: none;
-  transition: color 0.3s;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
 }
 
 .nav-links li a:hover {
-  color: #007bff;
+  background-color: #46d0fa;
+  color: #333;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
 }
 .app-container{
   display: grid;
@@ -54,7 +83,7 @@ header {
 }
 
 .header{
-  grid-row: 1;
+  grid-row: 2;
 }
 .main-content{
   grid-row: 2;
@@ -97,4 +126,47 @@ header {
 .footer-container ul li:hover {
   color: #007bff;
   transition: color 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .navbar {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-container .logo h1 {
+    font-size: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .material-symbols-outlined {
+    font-size: 20px;
+  }
 }
