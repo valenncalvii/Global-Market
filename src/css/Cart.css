@@ -1,4 +1,9 @@
-
+.cart{
+  min-height: 500px;
+}
+.cart .cart-title-empty{
+  text-align: center;
+}
 .cart ul {
   padding: 0;
   display: grid;

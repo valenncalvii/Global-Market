@@ -12,8 +12,8 @@ export default function Cart() {
   );
 
   // Función para manejar la eliminación del producto
-  const handleRemoveProduct = (productId) => {
-    removeProduct(productId); // Llamada a la función de eliminar el producto
+  const handleRemoveProduct = (product) => {
+    removeFromCart(product.id); // Llamada a la función de eliminar el producto
   };
 
   // Función para manejar la reducción de cantidad
@@ -34,7 +34,7 @@ export default function Cart() {
     <div className="cart">
       <h2>Carrito de Compras</h2>
       {cart.length === 0 ? (
-        <p>El carrito está vacío</p>
+        <p className="cart-title-empty">El carrito está vacío</p>
       ) : (
         <>
           <div className="cart-bar">
@@ -43,14 +43,13 @@ export default function Cart() {
             <h3>Precio</h3>
             <h3>Subtotal</h3>
             <h3>Cantidad</h3>
-            <h3>Eliminar</h3>
           </div>
           <ul>
             {cart.map((product, index) => (
               <li key={index} className="cart-list">
                 <img
                   className="cart-img"
-                  src={product.image}
+                  src={product.url}
                   alt={`Imagen de ${product.titulo}`}
                 />
                 <h4>{product.titulo}</h4>

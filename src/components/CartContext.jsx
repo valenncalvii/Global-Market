@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 // Crear el contexto para el carrito
 export const CartContext = createContext();
@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
   // Función para agregar o quitar un producto al carrito
   const toggleCart = (product) => {
     const isProductInCart = cart.some((item) => item.id === product.id);
-    
+
     if (isProductInCart) {
       // Si el producto ya está en el carrito, lo eliminamos
       setCart(cart.filter((item) => item.id !== product.id));

@@ -8,16 +8,17 @@ const Register = () => {
 
   const [message, setMessage] = useState('');
 
+
   return (
     <div className="register-container">
       <h2>Registrarse</h2>
       <Formik
-        initialValues={{ email: "", password: "", confirmPassword: "" }}
+        initialValues={{username: '', email: '', password: '', confirmPassword: '' }}
         validate={values => {
           const errors = {};
           //error nombre
-          if(!values.name){
-            errors.name = 'se necesita un nombre'
+          if(!values.username){
+            errors.username = 'se necesita un nombre'
           }
           //error correo
           if (!values.email) {
@@ -35,29 +36,35 @@ const Register = () => {
           ) {
             errors.password = '"la contraseña debe tener entre 8 y 16 caracteres y puede incluir letras, números y símbolos';
           }
+          if(values.confirmPassword !== values.password){
+            errors.confirmPassword = 'las contraseñas no coinciden'
+          }
 
           return errors;
         }}
-        onSubmit={ (values, {resetForm}) => {
+        onSubmit={ async (values, {resetForm}) => {
               try{
-                const response = axios.post(`${API_URL}/users`, values);
-                setMessage("registro exitoso!" + response.data.message)
+                const {confirmPassword, ...filteredValues} = values
+                const response = await axios.post(`${API_URL}/users`, filteredValues);
+                console.log(message)
+                setMessage("registro exitoso!" + (response.data.message || ""));
               }catch(error){
-                setMessage("error en el registro: " + error.response?.data?.message || error.message)
+                setMessage("error en el registro: " +(error.response?.data?.message || error.message));
               }
           resetForm();
         }}
       >
-        {({ errors }) => (
+        {({ values, errors }) => (
           <Form className="register-form">
              <div className="form-group">
-              <label htmlFor="name">Nombre:</label>
+              <label htmlFor="username">Nombre:</label>
               <Field
                 type="text"
-                id="name"
-                name="name"
+                id="username"
+                name="username"
+                value={values.username}
               />
-              <ErrorMessage name="name" component={() =>(<div className="error-message">{errors.name}</div>)}/>
+              <ErrorMessage name="username" component={() =>(<div className="error-message">{errors.username}</div>)}/>
             </div>
             <div className="form-group">
               <label htmlFor="email">Email:</label>
@@ -65,7 +72,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="correo@correo.com"
+                value={values.email}
               />
               <ErrorMessage name="email" component={() =>(<div className="error-message">{errors.email}</div>)}/>
             </div>
@@ -75,7 +82,7 @@ const Register = () => {
                 type="password"
                 id="password"
                 name="password"
-                placeholder="contraseña"
+                value={values.password}
               />
               <ErrorMessage name="password" component={() =>(<div className="error-message">{errors.password}</div>)}/>
             </div>
@@ -83,13 +90,13 @@ const Register = () => {
               <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
               <Field
                 type="Password"
-                id="ConfirmPassword"
+                id="confirmPassword"
                 name="confirmPassword"
               />
               <ErrorMessage name="confirmPassword" component={() =>(<div className="error-message">{errors.confirmPassword}</div>)}/>
             </div>
 
-            <button type="submit" className="register-button">
+            <button type="submit" name="submit" className="register-button">
               Registrarse
             </button>
             {message && <p>{message}</p>}
@@ -110,6 +117,5 @@ export default Register;
 
 /*
   orders: comparar userid con orden de userid, seria compra de productos. que muestre cada compra en carrito que se hizo, guardar en order los productos en carrito
-  hacer la migracion devuelta para tener lo ultimo, borrar base de datos ya creada.
-  buscar como guardar las imagemes
+
   */ 

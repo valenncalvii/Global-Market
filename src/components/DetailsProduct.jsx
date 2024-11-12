@@ -5,6 +5,7 @@ import Modal from './Modal';
 import { useCart } from '../context/CartContext';
 import API_URL from '../API';
 import axios from 'axios';
+import { useAuth } from "../context/AuthContext"
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
@@ -15,8 +16,9 @@ export default function DetailsProduct() {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate(); // Hook para redirigir
   const location = useLocation(); // Captura la URL de la página actual
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de si el usuario está logueado
+  const { isAuthenticated } = useAuth();// Estado de si el usuario está logueado
 
+ 
   //funcion para llamar a la api y obtener producto
   useEffect(() => {
     const obtenerProducto = async () => {
@@ -40,7 +42,7 @@ export default function DetailsProduct() {
 
   // Redirigir al login si no está logueado y pasar la URL actual para redirigir después
   const handleBuyNow = () => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       // Redirige a login, pasando la URL actual como "state"
       navigate("/login", { state: { from: location.pathname } });
     } else {

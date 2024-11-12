@@ -20,8 +20,9 @@ export const CartProvider = ({ children }) => {
       const productIndex = prevCart.findIndex((item) => item.id === product.id);
       if (productIndex > -1) {
         // Si el producto ya existe, incrementa la cantidad
-        const updatedCart = [...prevCart];
-        updatedCart[productIndex].cantidad += 1;
+        const updatedCart = prevCart.map((item, index) =>
+          index === productIndex ? { ...item, cantidad: item.cantidad + 1 } : item
+        );
         return updatedCart;
       } else {
         // Si el producto no existe, agrégalo con cantidad inicial de 1
@@ -54,5 +55,5 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
+//hook para usar el contexto del carrito en otros componentes
 export const useCart = () => useContext(CartContext);
