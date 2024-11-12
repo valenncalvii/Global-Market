@@ -22,6 +22,7 @@ export default function DetailsProduct() {
     const obtenerProducto = async () => {
       try {
         const response = await axios.get(`${API_URL}/products/${id}`);
+        console.log(response)
         setProduct(response.data);
         console.log("Producto obtenido:", response.data);
       } catch (error) {
@@ -58,13 +59,13 @@ export default function DetailsProduct() {
     <main className="product-details-container">
       {/* Sección de imagen del producto */}
       <section className="product-selected-image">
-        <img src={product.image} alt={product.titulo} />
+        <img src={product.url} alt={product.titulo} />
       </section>
 
       {/* Sección de información principal del producto */}
       <article className="product-info">
         <h1>{product.titulo}</h1>
-        <p className="product-category">Categoría: {product.category}</p>
+        <p className="product-category">Categoría: {product.categoria}</p>
 
         <ul className="product-details-list">
           <li>Detalle 1</li>

@@ -39,16 +39,13 @@ const Register = () => {
           return errors;
         }}
         onSubmit={ (values, {resetForm}) => {
-            
               try{
                 const response = axios.post(`${API_URL}/users`, values);
                 setMessage("registro exitoso!" + response.data.message)
               }catch(error){
                 setMessage("error en el registro: " + error.response?.data?.message || error.message)
               }
-            
           resetForm();
-          
         }}
       >
         {({ errors }) => (
@@ -107,3 +104,12 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
+/*
+  orders: comparar userid con orden de userid, seria compra de productos. que muestre cada compra en carrito que se hizo, guardar en order los productos en carrito
+  hacer la migracion devuelta para tener lo ultimo, borrar base de datos ya creada.
+  buscar como guardar las imagemes
+  */ 

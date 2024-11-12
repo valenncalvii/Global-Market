@@ -5,6 +5,12 @@ import axios from "axios";
 import Pagination from "./pagination";
 import API_URL from "../API";
 import "../css/ProductCard.css";
+//import {cloudinary} from "../cloudinaryConfig"
+import { Cloudinary } from '@cloudinary/url-gen';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import { AdvancedImage } from '@cloudinary/react';
+
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
@@ -46,6 +52,19 @@ export default function Main() {
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
+
+
+  const cld = new Cloudinary({ cloud: { cloudName: 'dmmyupmtm' }});
+  
+  // Use this sample image or upload your own via the Media Explorer
+  const img = cld
+        .image('Global Market/inodorodeporcelana')
+        .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
+        .quality('auto')
+        .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
+//<AdvancedImage cldImg={img}/>
+
+
   return (
     <main className="main-container">
       <aside className="filter-container">
@@ -72,6 +91,7 @@ export default function Main() {
             <li><button onClick={() => setFilterCategory("piletas")}>Piletas</button></li>
           </ul>
         </div>
+        
       </aside>
 
       <section className="product-list">
@@ -80,7 +100,7 @@ export default function Main() {
             <ProductCards
               key={product.id}
               id={product.id}
-              image={product.image}
+              image={product.url}
               title={product.titulo}
               price={product.precio}
             />
