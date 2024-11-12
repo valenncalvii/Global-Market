@@ -26,7 +26,7 @@ export default function Cart() {
           
             <li key={index} className="cart-list">
               
-              <img className="cart-img" src={product.image} alt={product.title} />
+              <img className="cart-img" src={product.url} alt={product.title} />
               <h4>{product.titulo}</h4>
               <div>${product.precio}</div> 
               <div>${product.precio}</div> {/* Subtotal */}
