@@ -1,0 +1,74 @@
+/* Superposición del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Transición para la opacidad */
+}
+
+.modal-overlay.show {
+  opacity: 1; /* Aparece gradualmente */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+  max-width: 90%; /* Asegura que el modal no sea demasiado grande en pantallas pequeñas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para resaltar el modal */
+  transition: transform 0.3s ease;
+}
+
+/* Botón de cierre */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #ff5c5c; /* Cambia el color al pasar el cursor */
+}
+
+/* Estilo para la lista de elementos */
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+.modal-content ul li {
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content ul li:hover {
+  background-color: #e0e0e0; /* Fondo al pasar el cursor */
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 500px) {
+  .modal-content {
+    width: 80%;
+  }
+}
