@@ -1,11 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCards from "./ProductCards";
 import axios from "axios";
 import Pagination from "./pagination";
 import API_URL from "../API";
 import "../css/ProductCard.css";
-//import {cloudinary} from "../cloudinaryConfig"
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -14,8 +12,8 @@ import { AdvancedImage } from '@cloudinary/react';
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
-  const [currentPage, setCurrentPage] = useState(1); // Estado de páginas
-  const [filterCategory, setFilterCategory] = useState(""); // Estado de filtro
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filterCategory, setFilterCategory] = useState("");
   const [productos, setProductos] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -23,14 +21,14 @@ export default function Main() {
     const obtenerProductos = async () => {
       try {
         const response = await axios.get(`${API_URL}/products`);
-        setProductos(response.data); // Actualiza el estado con los datos de la API
+        setProductos(response.data);
+        console.log("Categorías disponibles:", response.data.map(product => product.category));
       } catch (error) {
         console.error("Error al obtener productos:", error);
       }
     };
     obtenerProductos();
   }, []);
-  console.log(productos);
 
   // Obtener categorías desde el endpoint
   useEffect(() => {
@@ -63,24 +61,9 @@ export default function Main() {
 
   // Para la paginación que muestre la cantidad de páginas
   const totalFilteredPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-
-  // Para mostrar en pantalla 9 productos
   const indexOfLastProduct = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-
-
-  const cld = new Cloudinary({ cloud: { cloudName: 'dmmyupmtm' }});
-  
-  // Use this sample image or upload your own via the Media Explorer
-  const img = cld
-        .image('Global Market/inodorodeporcelana')
-        .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
-        .quality('auto')
-        .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
-//<AdvancedImage cldImg={img}/>
-
 
   return (
     <main className="main-container">
@@ -108,7 +91,6 @@ export default function Main() {
             <li><button onClick={() => setFilterCategory("piletas")}>Piletas</button></li>
           </ul>
         </div>
-        
       </aside>
 
       <section className="product-list">

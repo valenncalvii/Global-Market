@@ -13,7 +13,7 @@ export default function Header() {
     <header className="header-container">
       <div className="logo">
         <img src={logo} alt="Logo" />
-        <h1>Global Market</h1>
+        <h1 className="centered">Global Market</h1>
       </div>
       
         <nav className="navbar">
