@@ -17,7 +17,7 @@ html, body {
 .main-container {
   flex: 1; /* Esto hace que el contenido principal ocupe el espacio restante */
   display: flex;
-  flex-direction: column;
+
 }
 
 /* Contenedor de la categoría y los productos alineados horizontalmente */
