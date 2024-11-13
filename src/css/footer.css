@@ -1,48 +1,54 @@
-/* Asegura que la estructura de la página ocupe todo el alto de la pantalla */
 html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #bebebe;
-  }
-  
-  /* Contenedor principal que envuelve todo el contenido */
-  .app-container {
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #bebebe;
+}
 
-    min-height: 100vh; /* Esto asegura que el contenedor principal ocupe al menos el 100% de la altura */
-  }
-  
-  /* Contenedor del main content, donde se renderizan las rutas */
-  .main-container {
-    flex: 1; /* Esto hace que el main contenido ocupe el espacio restante */
-    display: flex;
-    flex-direction: column;
- 
-  }
-  
-  /* Estilo del Footer */
-  .footer-container {
-    background-color: #ddd;
-    color: #333;
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-    margin-top: auto; /* Asegura que el footer siempre se mantenga abajo */
-  }
-  
-  .footer{
-    grid-row: 3;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color:#ddd; 
-    color:#333;
-    padding: 10px;
-    text-align: center;
-  }
+/* Contenedor principal que envuelve todo el contenido */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenedor principal ocupe el 100% de la altura */
+}
+
+/* Contenedor del main content, donde se renderizan las rutas */
+.main-container {
+  flex: 1; /* Esto hace que el contenido principal ocupe el espacio restante */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor de la categoría y los productos alineados horizontalmente */
+.category-and-products-container {
+  display: flex;
+  justify-content: space-between; /* Espacio entre la categoría y los productos */
+  align-items: flex-start; /* Alinea los elementos verticalmente al inicio (parte superior) */
+  margin: 20px 0; /* Agrega un poco de espacio entre el contenido */
+  flex-wrap: wrap; /* Asegura que los elementos se ajusten en pantallas más pequeñas */
+}
+
+/* Estilo del Footer */
+.footer-container {
+  background-color: #ddd;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  margin-top: auto; /* Asegura que el footer siempre se mantenga abajo */
+}
+
+/* Footer fijo al fondo de la pantalla */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #ddd;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+}
 
 .footer-container p {
   margin: 0;
@@ -68,6 +74,7 @@ html, body {
   color: #007bff;
   transition: color 0.3s;
 }
+
 @media (max-width: 480px) {
   .footer-container {
     padding: 15px;
@@ -82,10 +89,11 @@ html, body {
     margin: 0 10px;
   }
 }
+
 @media (max-width: 350px) {
   .footer-container {
     padding: 10px;
-    width: 120%; /* aumente para que no se rompa en 350px*/
+    width: 120%; /* Aumenta para que no se rompa en 350px */
   }
 
   .footer-container p {
