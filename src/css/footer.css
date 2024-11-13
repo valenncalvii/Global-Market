@@ -1,4 +1,5 @@
 /* Asegura que la estructura de la página ocupe todo el alto de la pantalla */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -16,12 +17,7 @@ html, body {
   }
   
   /* Contenedor del main content, donde se renderizan las rutas */
-  .main-container {
-    flex: 1; /* Esto hace que el main contenido ocupe el espacio restante */
-    display: flex;
-    flex-direction: column;
- 
-  }
+
   
   /* Estilo del Footer */
   .footer-container {
