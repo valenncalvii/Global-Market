@@ -30,19 +30,34 @@ export default function Main() {
     obtenerProductos();
   }, []);
 
-  // Función para filtrar productos por categoría
-  const filterProducts = () => {
-    let filtered = productos;
+  // Obtener categorías desde el endpoint
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/products/{id}`);
+        setCategories(response.data);
+       console.log(categories)
+      } catch (error) {
+        console.error("Error al obtener categorías:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
-    // Filtrar por categoría si está seleccionada
-    if (filterCategory) {
-      filtered = filtered.filter((product) => product.category === filterCategory);
-    }
-    return filtered;
+  //ACA ESTA EL FILTRO POR CATEGORIA PERO ESTA MEDIO MAL, ALGO DE ACA SIRVE IGUAL
+  
+   // Filtrar productos por categoría
+   const filterProducts = () => {
+    if (!filterCategory) return productos;  // Si no hay categoría seleccionada, mostrar todos los productos
+    return productos.filter(product => product.category?.nombre === filterCategory);
+    console.log("aca"+filterCategory)
+    console.log("otro"+productos) 
+
   };
   //HASTA ACA EL FILTRO DSP ABAJO ES PARA FILTRAR LAS PAG QUE APAREZCAN 9 PROD
   
   const filteredProducts = filterProducts();
+
 
   // Para la paginación que muestre la cantidad de páginas
   const totalFilteredPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
@@ -56,23 +71,23 @@ export default function Main() {
         <div className="filter-product-box">
           <h3>Construcción</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("sanitarios")}>Sanitarios</button></li>
-            <li><button onClick={() => setFilterCategory("materiales")}>Materiales</button></li>
-            <li><button onClick={() => setFilterCategory("herramientas")}>Herramientas varias</button></li>
+            <li><button onClick={() => setFilterCategory("Sanitarios")}>Sanitarios</button></li>
+            <li><button onClick={() => setFilterCategory("Materiales")}>Materiales</button></li>
+            <li><button onClick={() => setFilterCategory("Herramientas varias")}>Herramientas varias</button></li>
           </ul>
 
           <h3>Ferretería</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("corte")}>Herramientas de corte</button></li>
-            <li><button onClick={() => setFilterCategory("fijacion")}>Herramientas de fijación</button></li>
-            <li><button onClick={() => setFilterCategory("mano")}>Herramientas de mano</button></li>
-            <li><button onClick={() => setFilterCategory("electricas")}>Herramientas eléctricas</button></li>
-            <li><button onClick={() => setFilterCategory("herrajes")}>Herrajes y herraduras</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas de corte")}>Herramientas de corte</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas de fijacion")}>Herramientas de fijación</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas de mano")}>Herramientas de mano</button></li>
+            <li><button onClick={() => setFilterCategory("herramientas electricas")}>Herramientas eléctricas</button></li>
+            <li><button onClick={() => setFilterCategory("herrajes y herraduras")}>Herrajes y herraduras</button></li>
           </ul>
           
           <h3>Hogar</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("jardin")}>Jardín y Camping</button></li>
+            <li><button onClick={() => setFilterCategory("jardin y camping")}>Jardín y Camping</button></li>
             <li><button onClick={() => setFilterCategory("piletas")}>Piletas</button></li>
           </ul>
         </div>
