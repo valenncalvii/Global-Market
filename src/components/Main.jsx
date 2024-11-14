@@ -4,6 +4,7 @@ import axios from "axios";
 import Pagination from "./pagination";
 import API_URL from "../services/API";
 import "../styles/ProductCard.css";
+import Loading from "./Loading";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -12,15 +13,19 @@ export default function Main() {
   const [filterCategory, setFilterCategory] = useState(null);
   const [productos, setProductos] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Función para obtener productos
   useEffect(() => {
     const obtenerProductos = async () => {
+      setIsLoading(true)
       try {
         const response = await axios.get(`${API_URL}/products`);
         setProductos(response.data);
       } catch (error) {
         console.error("Error al obtener productos:", error);
+      }finally{
+        setIsLoading(false)
       }
     };
     obtenerProductos();
@@ -29,11 +34,14 @@ export default function Main() {
   // Función para obtener categorías
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsLoading(true)
       try {
         const response = await axios.get(`${API_URL}/category`);
         setCategories(response.data);
       } catch (error) {
         console.error("Error al obtener categorías:", error);
+      }finally{
+        setIsLoading(false)
       }
     };
     fetchCategories();
@@ -82,6 +90,7 @@ export default function Main() {
       </aside>
 
       <section className="product-list">
+        {isLoading && <Loading></Loading> }
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <ProductCards

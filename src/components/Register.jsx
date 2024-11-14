@@ -4,11 +4,15 @@ import "../styles/Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import API_URL from "../services/API";
+import Loading from "./Loading";
 const Register = () => {
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
+    
     <div className="register-container">
+    {isLoading && <Loading></Loading> }
       <h2>Registrarse</h2>
       <Formik
         initialValues={{
@@ -48,6 +52,7 @@ const Register = () => {
           return errors;
         }}
         onSubmit={async (values, { resetForm }) => {
+          setIsLoading(true)
           try {
             const { confirmPassword, ...filteredValues } = values;
             const response = await axios.post(
@@ -61,11 +66,14 @@ const Register = () => {
               "error en el registro: " +
                 (error.response?.data?.message || error.message)
             );
+          }finally{
+            setIsLoading(false)
           }
           resetForm();
         }}
       >
         {({ values, errors }) => (
+
           <Form className="register-form">
             <div className="form-group">
               <label htmlFor="username">Nombre:</label>

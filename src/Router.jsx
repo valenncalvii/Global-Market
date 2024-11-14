@@ -5,7 +5,7 @@ import Register from "./components/Register";
 import DetailsProduct from "./components/DetailsProduct";
 import Cart from "./components/Cart";
 import RootLayout from "./layouts/RootLayout";
-
+import Account from "./components/Account";
 
 const Router = createBrowserRouter([
 {
@@ -16,7 +16,8 @@ const Router = createBrowserRouter([
     { path:"/login", element:<Login />},
     { path:"/register", element:<Register />},
     { path:"/detailsproduct/:id", element:<DetailsProduct />},
-    { path:"/cart", element:<Cart />}
+    { path:"/cart", element:<Cart />},
+    {path:"/account", element:<Account />}
     ]
 }
 ]);

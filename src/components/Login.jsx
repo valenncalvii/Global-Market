@@ -4,14 +4,19 @@ import "../styles/Login.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import API_URL from "../services/API";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import Loading from "./Loading";
 
 const Login = () => {
   const [message, setMessage] = useState("");
+  const [isLoading, setIdLoading] = useState(false)
   const navigate = useNavigate(); // Hook para redirigir
   const location = useLocation(); // Hook para obtener la URL desde la que el usuario vino
   const from = location.state?.from || "/"; // Si no existe la URL de referencia, redirige a productos
+  const {login} = useAuth();
 
   const handleSubmit = async (values) => {
+    setIdLoading(true)
     try {
       // Realizar el POST para login
       const response = await axios.post(`${API_URL}/auth/login`, {
@@ -21,6 +26,14 @@ const Login = () => {
       });
       setMessage("Inicio de sesión exitoso");
       localStorage.setItem("authToken", response.data.token);
+
+      // Guardamos los datos del usuario en el contexto global
+      const userData = {
+        id: response.data.user.id,
+        username: response.data.user.username,
+      };
+      login(userData); // Actualiza el estado global del usuario
+
       navigate(from, { replace: true });
     } catch (error) {
       console.error("Detalles del error:", error);
@@ -41,11 +54,14 @@ const Login = () => {
         // Error en la configuración de la solicitud
         setMessage("Error en el inicio de sesión: " + error.message);
       }
+    }finally{
+      setIdLoading(false)
     }
   };
 
   return (
     <div className="login-container">
+      {isLoading && <Loading></Loading> }
       <h2>Iniciar Sesión</h2>
 
       <Formik
