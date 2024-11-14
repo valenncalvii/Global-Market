@@ -89,6 +89,7 @@ const Login = () => {
                 type="text"
                 id="username"
                 name="username"
+                maxLength="20"
                 value={values.username}
               />
               <ErrorMessage
@@ -104,6 +105,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
+                maxLength="50"
                 value={values.email}
               />
               <ErrorMessage
@@ -119,6 +121,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                maxLength="16"
                 value={values.password}
               />
               <ErrorMessage
