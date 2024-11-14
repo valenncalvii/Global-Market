@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Hook para la navegación
-import "../css/Login.css";
+import "../styles/Login.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import API_URL from "../API";
+import API_URL from "../services/API";
 import axios from "axios";
 
 const Login = () => {

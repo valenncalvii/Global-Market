@@ -1,5 +1,5 @@
 import logo from "../assets/logo.png";
-import "../css/Header.css";
+import "../styles/Header.css";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext"; 
 

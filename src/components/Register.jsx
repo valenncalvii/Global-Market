@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/Register.css";
+import "../styles/Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
-import API_URL from "../API";
+import API_URL from "../services/API";
 const Register = () => {
   const [message, setMessage] = useState("");
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom'; 
-import "../css/DetailsProduct.css";
-import Modal from './Modal';
+import "../styles/DetailsProduct.css";
+import Modal from './modals/Modal';
 import { useCart } from '../context/CartContext';
-import API_URL from '../API';
+import API_URL from '../services/API';
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext"
 

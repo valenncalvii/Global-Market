@@ -1,5 +1,5 @@
 import React from 'react';
-import "../css/ProductCard.css";
+import "../styles/ProductCard.css";
 export default function Pagination ({ currentPage, totalPages, onPageChange }){
     const handlePageChange = (page) => {
         onPageChange(page);
