@@ -7,6 +7,7 @@ import API_URL from '../services/API';
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext"
 import Loading from './Loading';
+import { Link } from "react-router-dom";
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
@@ -67,6 +68,9 @@ export default function DetailsProduct() {
       
       {/* Sección de imagen del producto */}
       <section className="product-selected-image">
+       <div className='div-link'>
+        <Link className="link" to={"/"}>⬅</Link>
+       </div>
         <img src={product.url} alt={product.titulo} />
       </section>
 
