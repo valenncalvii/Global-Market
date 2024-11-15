@@ -1,117 +1,96 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import ProductCards from "./ProductCards";
 import axios from "axios";
 import Pagination from "./pagination";
-import API_URL from "../API";
-import "../css/ProductCard.css";
-//import {cloudinary} from "../cloudinaryConfig"
-import { Cloudinary } from '@cloudinary/url-gen';
-import { auto } from '@cloudinary/url-gen/actions/resize';
-import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
-import { AdvancedImage } from '@cloudinary/react';
+import API_URL from "../services/API";
+import "../styles/ProductCard.css";
+import Loading from "./Loading";
 
 const ITEMS_PER_PAGE = 9;
 
 export default function Main() {
-  const [currentPage, setCurrentPage] = useState(1); // Estado de páginas
-  const [filterCategory, setFilterCategory] = useState(""); // Estado de filtro
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filterCategory, setFilterCategory] = useState(null);
   const [productos, setProductos] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Función para obtener productos
   useEffect(() => {
     const obtenerProductos = async () => {
+      setIsLoading(true)
       try {
         const response = await axios.get(`${API_URL}/products`);
-        setProductos(response.data); // Actualiza el estado con los datos de la API
+        setProductos(response.data);
       } catch (error) {
         console.error("Error al obtener productos:", error);
+      }finally{
+        setIsLoading(false)
       }
     };
     obtenerProductos();
   }, []);
-  console.log(productos);
 
-  // Obtener categorías desde el endpoint
+  // Función para obtener categorías
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsLoading(true)
       try {
-        const response = await axios.get(`${API_URL}/products/{id}`);
+        const response = await axios.get(`${API_URL}/category`);
         setCategories(response.data);
-       console.log(categories)
       } catch (error) {
         console.error("Error al obtener categorías:", error);
+      }finally{
+        setIsLoading(false)
       }
     };
     fetchCategories();
   }, []);
 
-  //ACA ESTA EL FILTRO POR CATEGORIA PERO ESTA MEDIO MAL, ALGO DE ACA SIRVE IGUAL
-  
-   // Filtrar productos por categoría
-   const filterProducts = () => {
-    if (!filterCategory) return productos;  // Si no hay categoría seleccionada, mostrar todos los productos
-    return productos.filter(product => product.category?.nombre === filterCategory);
-    console.log("aca"+filterCategory)
-    console.log("otro"+productos) 
-
+  // Función para manejar la selección de categorías
+  const handleCategorySelection = (category) => {
+    setFilterCategory(category); // Establece el filtro de categoría
+    setCurrentPage(1); // Reinicia la página a la primera cuando se cambia la categoría
   };
-  //HASTA ACA EL FILTRO DSP ABAJO ES PARA FILTRAR LAS PAG QUE APAREZCAN 9 PROD
-  
-  const filteredProducts = filterProducts();
 
+    // Filtrar productos por categoría
+    const filterProducts = () => {
+      if (!filterCategory) return productos; // Si no hay categoría seleccionada, mostrar todos los productos
+      return productos.filter(
+        (product) => product.categoryId === filterCategory.id // Asegúrate de que los tipos de category_id e id sean compatibles
+      );
+    };
 
-  // Para la paginación que muestre la cantidad de páginas
+    const filteredProducts = filterProducts();
+
+  // Configuración de paginación
   const totalFilteredPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-
-  // Para mostrar en pantalla 9 productos
   const indexOfLastProduct = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - ITEMS_PER_PAGE;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-
-
-  const cld = new Cloudinary({ cloud: { cloudName: 'dmmyupmtm' }});
-  
-  // Use this sample image or upload your own via the Media Explorer
-  const img = cld
-        .image('Global Market/inodorodeporcelana')
-        .format('auto') // Optimize delivery by resizing and applying auto-format and auto-quality
-        .quality('auto')
-        .resize(auto().gravity(autoGravity()).width(500).height(500)); // Transform the image: auto-crop to square aspect_ratio
-//<AdvancedImage cldImg={img}/>
-
 
   return (
     <main className="main-container">
       <aside className="filter-container">
         <div className="filter-product-box">
-          <h3>Construcción</h3>
+          <h3>Categorías</h3>
           <ul>
-            <li><button onClick={() => setFilterCategory("Sanitarios")}>Sanitarios</button></li>
-            <li><button onClick={() => setFilterCategory("Materiales")}>Materiales</button></li>
-            <li><button onClick={() => setFilterCategory("Herramientas varias")}>Herramientas varias</button></li>
-          </ul>
-
-          <h3>Ferretería</h3>
-          <ul>
-            <li><button onClick={() => setFilterCategory("herramientas de corte")}>Herramientas de corte</button></li>
-            <li><button onClick={() => setFilterCategory("herramientas de fijacion")}>Herramientas de fijación</button></li>
-            <li><button onClick={() => setFilterCategory("herramientas de mano")}>Herramientas de mano</button></li>
-            <li><button onClick={() => setFilterCategory("herramientas electricas")}>Herramientas eléctricas</button></li>
-            <li><button onClick={() => setFilterCategory("herrajes y herraduras")}>Herrajes y herraduras</button></li>
-          </ul>
-          
-          <h3>Hogar</h3>
-          <ul>
-            <li><button onClick={() => setFilterCategory("jardin y camping")}>Jardín y Camping</button></li>
-            <li><button onClick={() => setFilterCategory("piletas")}>Piletas</button></li>
+            {categories.map((category) => (
+              <li key={category.id}>
+                <button onClick={() => handleCategorySelection(category)}>
+                  {category.nombre}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button onClick={() => handleCategorySelection(null)}>Mostrar todos</button>
+            </li>
           </ul>
         </div>
-        
       </aside>
 
       <section className="product-list">
+        {isLoading && <Loading></Loading> }
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <ProductCards

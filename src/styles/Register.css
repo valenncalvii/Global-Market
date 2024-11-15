@@ -1,0 +1,132 @@
+/* Contenedor principal del formulario de registro */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Cambiado para que ocupe toda la altura disponible */
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem; /* Ajuste de tamaño de fuente */
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; /* Límite máximo para anchos grandes */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1rem; /* Tamaño de fuente ajustable */
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem; /* Ajuste para mayor flexibilidad */
+    width: 100%; /* Asegura que los inputs ocupen el 100% del ancho disponible */
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .register-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Tamaño de fuente ajustable */
+    transition: background-color 0.3s;
+    width: 100%; /* Hace que el botón ocupe el 100% del ancho disponible */
+  }
+  
+  .register-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-link {
+    margin-top: 15px;
+  }
+  
+  .login-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  /* Responsividad para pantallas más pequeñas */
+  @media (max-width: 490px) {
+    .form-group label {
+      font-size: 0.9rem; /* Ajuste de tamaño en pantallas pequeñas */
+    }
+  
+    input,
+    .register-button {
+      font-size: 1rem; /* Ajuste del tamaño del texto */
+      padding: 8px; /* Ajuste en el padding */
+    }
+  
+    .form-group label,
+    .login-link {
+      font-size: 0.9rem; /* Tamaño reducido */
+    }
+  
+    .login-link {
+      font-size: 0.8rem; /* Ajuste adicional */
+    }
+  }
+  
+  @media (max-width: 320px) {
+    h2 {
+      font-size: 1.2rem; /* Tamaño más pequeño para cabeceras */
+      margin-bottom: 8px;
+    }
+  
+    .register-button {
+      padding: 6px;
+      font-size: 0.9rem; /* Ajuste del tamaño de la fuente */
+    }
+  
+    .form-group label {
+      font-size: 1rem; /* Etiquetas un poco más pequeñas */
+    }
+  
+    input {
+      padding: 6px; /* Ajuste del padding */
+      font-size: 0.9rem; /* Tamaño reducido para inputs */
+    }
+  
+    .register-container {
+      padding: 15px; /* Menos padding en pantallas muy pequeñas */
+    }
+  }
+  

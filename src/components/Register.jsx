@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/Register.css";
+import "../styles/Register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
-import API_URL from "../API";
+import API_URL from "../services/API";
+import Loading from "./Loading";
 const Register = () => {
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
+    
     <div className="register-container">
+    {isLoading && <Loading></Loading> }
       <h2>Registrarse</h2>
       <Formik
         initialValues={{
@@ -22,6 +26,8 @@ const Register = () => {
           //error nombre
           if (!values.username) {
             errors.username = "se necesita un nombre";
+          }else if (values.username.length < 3) {
+            errors.username = "El nombre debe tener al menos 3 caracteres";
           }
           //error correo
           if (!values.email) {
@@ -48,6 +54,7 @@ const Register = () => {
           return errors;
         }}
         onSubmit={async (values, { resetForm }) => {
+          setIsLoading(true)
           try {
             const { confirmPassword, ...filteredValues } = values;
             const response = await axios.post(
@@ -61,11 +68,14 @@ const Register = () => {
               "error en el registro: " +
                 (error.response?.data?.message || error.message)
             );
+          }finally{
+            setIsLoading(false)
           }
           resetForm();
         }}
       >
         {({ values, errors }) => (
+
           <Form className="register-form">
             <div className="form-group">
               <label htmlFor="username">Nombre:</label>
@@ -74,6 +84,7 @@ const Register = () => {
                 id="username"
                 name="username"
                 value={values.username}
+                maxLength="20"
               />
               <ErrorMessage
                 name="username"
@@ -87,7 +98,8 @@ const Register = () => {
               <Field
                 type="email"
                 id="email"
-                name="email"
+                name="email" 
+                maxLength="50"
                 value={values.email}
               />
               <ErrorMessage
@@ -103,6 +115,7 @@ const Register = () => {
                 type="password"
                 id="password"
                 name="password"
+                maxLength="16"
                 value={values.password}
               />
               <ErrorMessage
@@ -118,6 +131,7 @@ const Register = () => {
                 type="Password"
                 id="confirmPassword"
                 name="confirmPassword"
+                maxLength="16"
               />
               <ErrorMessage
                 name="confirmPassword"

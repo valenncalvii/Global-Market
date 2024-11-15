@@ -1,0 +1,180 @@
+/* Reseteo de padding, margen y box-sizing */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Variables y estilos base */
+#root {
+  --color-fondo: #f4f4f4;
+  --font-family: "Kanit", sans-serif;
+}
+
+/* Configuración global para evitar desplazamiento horizontal */
+html, body {
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  width: 100vw; /* Asegura que la pantalla ocupe todo el ancho */
+}
+
+/* Contenedor principal */
+.app-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+/* Header */
+.header-container {
+  display: flex;
+  background-color: var(--color-fondo);
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  max-width: 100%; /* Evita restricciones en el ancho */
+  text-align: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+  flex-wrap: wrap;
+  overflow-x: hidden; /* Evita scroll lateral inesperado */
+}
+
+.header-container .logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-container .logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+.header-container .logo h1 {
+  font-size: 3rem;
+  font-weight: normal;
+  color: #007bff;
+  margin: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.header-container .logo h1.centered {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header-container .logo h1:hover {
+  transform: rotate(5deg);
+  color: #003082;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-links li a {
+  color: #007bff;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #ddd;
+  color: #003082;
+  border-radius: 50px;
+}
+
+/* Contenido principal */
+.main-content {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Responsividad para pantallas medianas y pequeñas */
+@media (max-width: 810px) {
+  .header-container {
+    flex-direction: column;
+    padding: 10px;
+    width: 100vw; /* Asegura que el header abarque el ancho completo */
+    max-width: 100%; /* Evita restricción de ancho */
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .header-container .logo img {
+    max-width: 120px;
+  }
+
+  .header-container .logo h1 {
+    font-size: 2.2rem;
+  }
+
+  .navbar {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-links {
+    gap: 15px;
+    justify-content: center;
+  }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 450px) {
+  .header-container .logo h1 {
+    font-size: 1.8rem;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-links li a {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .header-container .logo img {
+    max-width: 90px;
+  }
+}
+
+/* Responsividad para pantallas muy pequeñas */
+@media (max-width: 350px) {
+  .header-container .logo h1 {
+    font-size: 1.6rem;
+  }
+
+  .nav-links li a {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .header-container .logo img {
+    max-width: 70px;
+  }
+}

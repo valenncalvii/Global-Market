@@ -1,0 +1,198 @@
+/* Estilo para el contenedor del formulario */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Controla la altura del contenedor */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; /* Centra el contenedor */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container button {
+  margin: 10px 0;
+  padding: 12px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.login-container button:hover {
+  background-color: #044cbe;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.register-link {
+  margin-top: 15px;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .login-container button {
+    padding: 10px 14px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  /* Ajuste en el tamaño de los elementos en pantallas muy pequeñas */
+  .register-link {
+    font-size: 14px;
+  }
+}
+
+/* Media Query para pantallas más pequeñas (350px o menos) */
+@media (max-width: 350px) {
+  .login-container {
+    width: 100%; 
+    padding: 12px;
+    height: 100%; /* Permite que la altura sea automática para ajustarse mejor */
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .login-container button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .register-link {
+    font-size: 12px;
+  }
+}
+
+/* Media Query para pantallas muy pequeñas (280px o menos) */
+@media (max-width: 280px) {
+  .login-container {
+    padding: 10px;
+    width: 100%; /* Hace que el formulario ocupe todo el ancho */
+    height: 100%;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  .login-container button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  input {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .register-link {
+    font-size: 10px; /* Reduce el tamaño de la fuente */
+  }
+}
+
+html, body{
+  height: 100%; 
+  margin: 0;
+}
+/* Asegura que el footer esté al final de la página sin superponerse */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+#root{
+  height: 100%;
+}

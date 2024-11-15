@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import "../css/Modal.css";
+import "../../styles/Modal.css";
 
 export default function Modal({ isOpen, onClose, paymentMethods, onSelectPaymentMethod }) {
   useEffect(() => {

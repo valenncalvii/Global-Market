@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/ProductCard.css";
+import "../styles/ProductCard.css";
 import { Link } from "react-router-dom";
 
 export default function ProductCards({ id, image, title, price }) {

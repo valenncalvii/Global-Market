@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom'; 
-import "../css/DetailsProduct.css";
-import Modal from './Modal';
+import "../styles/DetailsProduct.css";
+import Modal from './modals/Modal';
 import { useCart } from '../context/CartContext';
-import API_URL from '../API';
+import API_URL from '../services/API';
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext"
+import Loading from './Loading';
+import { Link } from "react-router-dom";
 
 export default function DetailsProduct() {
   const { id } = useParams(); // Capturamos el id del producto desde la URL
   const { cart, toggleCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado de visibilidad del modal
+  const [isLoading, setIsLoading] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // Estado para almacenar el método de pago seleccionado
   const paymentMethods = ["Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal"];
   const [product, setProduct] = useState(null);
   const navigate = useNavigate(); // Hook para redirigir
   const location = useLocation(); // Captura la URL de la página actual
-  const { isAuthenticated } = useAuth();// Estado de si el usuario está logueado
+  const { isAuthenticated} = useAuth();// Estado de si el usuario está logueado
 
  
   //funcion para llamar a la api y obtener producto
   useEffect(() => {
     const obtenerProducto = async () => {
+      setIsLoading(true)
       try {
         const response = await axios.get(`${API_URL}/products/${id}`);
         console.log(response)
@@ -29,6 +33,8 @@ export default function DetailsProduct() {
         console.log("Producto obtenido:", response.data);
       } catch (error) {
         console.error("Error al obtener producto:", error);
+      }finally{
+        setIsLoading(false)
       }
     };
     obtenerProducto();
@@ -41,14 +47,26 @@ export default function DetailsProduct() {
   };
 
   // Redirigir al login si no está logueado y pasar la URL actual para redirigir después
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (!isAuthenticated) {
-      // Redirige a login, pasando la URL actual como "state"
       navigate("/login", { state: { from: location.pathname } });
+      
     } else {
-      // Si está logueado, procede con la compra
-      console.log("Proceder con la compra");
-    }
+        const newOrder = {
+          fechaOrden:  new Date().toISOString(),
+          UserId: 1, //
+          ProductId: product.id,
+          Quantit: 1,
+          Price: product.precio,
+        };
+    
+        try {
+          const response = await axios.post(`${API_URL}/orders`, newOrder);
+          console.log("Orden creada con éxito:", response.data);
+        } catch (error) {
+          console.error("Error al crear la orden:", error);
+        }
+      }
   };
 
   if (!product) {
@@ -59,20 +77,20 @@ export default function DetailsProduct() {
 
   return (
     <main className="product-details-container">
+      
       {/* Sección de imagen del producto */}
       <section className="product-selected-image">
+       <div className='div-link'>
+        <Link className="link" to={"/"}>⬅</Link>
+       </div>
         <img src={product.url} alt={product.titulo} />
       </section>
 
       {/* Sección de información principal del producto */}
       <article className="product-info">
+      {isLoading && <Loading></Loading>}
         <h1>{product.titulo}</h1>
         <p className="product-category">Categoría: {product.categoria}</p>
-
-        <ul className="product-details-list">
-          <li>Detalle 1</li>
-          <li>Detalle 2</li>
-        </ul>
 
         <p className="product-price">Precio: ${product.precio}</p>
         <p className="product-cuotas">Unidades: {product.unidades} Unidades</p>

@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./Router";
 import Header from "./components/Header"; 
 import Footer from "./components/Footer"; 
-import "./css/Header.css";
+import "./styles/Header.css";
 import { AuthProvider } from './context/AuthContext.jsx';
 function App() {
   return (
