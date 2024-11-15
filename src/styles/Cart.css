@@ -1,9 +1,12 @@
-.cart{
+.cart {
   min-height: 500px;
+  height: 100%;
 }
-.cart .cart-title-empty{
+
+.cart .cart-title-empty {
   text-align: center;
 }
+
 .cart ul {
   padding: 0;
   display: grid;
@@ -25,7 +28,7 @@
   min-height: 200px;
   display: grid;
   grid-template-columns: 1fr 3fr 2fr 2fr 1fr;
-  align-items: center;  /* Alinea los elementos de la lista verticalmente */
+  align-items: center;
   padding: 10px;
   gap: 15px;
 }
@@ -107,10 +110,12 @@
 @media (max-width: 500px) {
   .cart-bar {
     grid-template-columns: 1fr 2fr 1fr 1fr;
+    font-size: 0.9rem;
   }
 
   .cart-list {
     grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 10px;
   }
 
   .cart-img {
@@ -125,20 +130,92 @@
   .cart-buy-button {
     width: 100%;
   }
+
+  .control-units button {
+    padding: 4px 8px;
+    font-size: 1rem;
+  }
 }
 
+@media (max-width: 400px) {
+  .cart-bar {
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.8rem;
+    padding: 5px;
+  }
 
+  .cart-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .cart-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-buy-total {
+    font-size: 1rem;
+  }
+
+  .cart-buy-button {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+
+  .control-units button {
+    padding: 3px 6px;
+    font-size: 0.9rem;
+  }
+
+  .control-units span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 280px) {
+  .cart-bar, .cart-list {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cart-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-buy {
+    align-items: center;
+  }
+
+  .cart-buy-button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    width: 100%;
+  }
+
+  .cart-buy-total {
+    font-size: 0.9rem;
+  }
+
+  .control-units button {
+    padding: 2px 4px;
+    font-size: 0.8rem;
+  }
+
+  .control-units span {
+    font-size: 0.8rem;
+  }
+}
 
 .disabled-button {
-  background-color: #d3d3d3;  
-  cursor: not-allowed;        
-  border: 1px solid #ccc;    
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  border: 1px solid #ccc;
 }
-
 
 button:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
 }
-
-

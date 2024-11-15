@@ -1,42 +1,53 @@
+/* Reseteo de padding, margen y box-sizing */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Variables y estilos base */
 #root {
   --color-fondo: #f4f4f4;
   --font-family: "Kanit", sans-serif;
+}
 
-}/*
-.app-container{
+/* Configuración global para evitar desplazamiento horizontal */
+html, body {
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  width: 100vw; /* Asegura que la pantalla ocupe todo el ancho */
+}
+
+/* Contenedor principal */
+.app-container {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
   background-color: #f8f8f8;
 }
-/*header*/
-.header-container  { 
- display: flex;
+
+/* Header */
+.header-container {
+  display: flex;
   background-color: var(--color-fondo);
-  
-  width: 100%;
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  max-width: 100%; /* Evita restricciones en el ancho */
   text-align: center;
-justify-content: space-around;
-  align-items: center;
-  justify-content: space-between; /* Esto mantiene el logo a la izquierda y los enlaces a la derecha */
+  justify-content: space-between;
   padding: 10px 20px;
-  position: relative; /* Necesario para posicionar el texto centrado */
+  position: relative;
+  flex-wrap: wrap;
+  overflow-x: hidden; /* Evita scroll lateral inesperado */
 }
 
 .header-container .logo {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* El logo permanece a la izquierda */
+  justify-content: flex-start;
+  flex: 1;
+  min-width: 0;
 }
 
 .header-container .logo img {
-  width: 100%;
   max-width: 150px;
   height: auto;
 }
@@ -46,15 +57,14 @@ justify-content: space-around;
   font-weight: normal;
   color: #007bff;
   margin: 0;
-  display: inline-block;
   transition: transform 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
 }
 
-/* Nombre "Global Market" centrado */
 .header-container .logo h1.centered {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Centra el nombre en el header */
+  transform: translateX(-50%);
 }
 
 .header-container .logo h1:hover {
@@ -67,17 +77,15 @@ justify-content: space-around;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex: 1;
 }
 
 .nav-links {
   list-style: none;
-  gap: 20px;
   display: flex;
-  margin-left: auto; /* Alinea los enlaces a la derecha */
-}
-
-.nav-links li {
-  display: inline-block;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-links li a {
@@ -94,6 +102,7 @@ justify-content: space-around;
   border-radius: 50px;
 }
 
+/* Contenido principal */
 .main-content {
   padding: 20px;
   display: flex;
@@ -102,71 +111,62 @@ justify-content: space-around;
   text-align: center;
 }
 
-@media (max-width: 650px) {
+/* Responsividad para pantallas medianas y pequeñas */
+@media (max-width: 810px) {
   .header-container {
-    flex-direction: column; /* Cambia el layout a columna en pantallas pequeñas */
-    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 100vw; /* Asegura que el header abarque el ancho completo */
+    max-width: 100%; /* Evita restricción de ancho */
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .header-container .logo img {
+    max-width: 120px;
+  }
+
+  .header-container .logo h1 {
+    font-size: 2.2rem;
   }
 
   .navbar {
     justify-content: center;
-    align-items: center;
-    padding: 10px;
+    width: 100%;
   }
 
   .nav-links {
-    width: 100%;
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  .nav-links li {
-    margin-left: 0;
-    margin-bottom: 10px; /* Espacio entre los enlaces */
-  }
-
-  .header-container .logo h1 {
-    font-size: 2rem; /* Ajusta el tamaño de h1 */
-  }
-
-  .header-container .logo img {
-    max-width: 100px; /* Imagen más pequeña */
+    gap: 15px;
+    justify-content: center;
   }
 }
 
+/* Responsividad para pantallas pequeñas */
 @media (max-width: 450px) {
   .header-container .logo h1 {
-    font-size: 1.8rem; /* Aún más pequeño */
-  }
-
-  .navbar {
-    justify-content: center; /* Centra la navbar en pantallas pequeñas */
-    padding: 10px;
+    font-size: 1.8rem;
   }
 
   .nav-links {
-    justify-content: center; /* Asegura que los enlaces estén centrados en pantallas pequeñas */
-    gap: 10px; /* Reduce el espacio entre los enlaces */
-  }
-
-  .nav-links li {
-    margin-left: 0; /* Elimina el margen izquierdo */
-    margin-bottom: 10px; /* Espacio entre los enlaces en fila */
+    gap: 10px;
   }
 
   .nav-links li a {
-    font-size: 18px; /* Reduce el tamaño de fuente */
-    padding: 8px; /* Reduce el padding */
+    font-size: 18px;
+    padding: 8px;
   }
 
   .header-container .logo img {
-    max-width: 80px; /* Aún más pequeña */
+    max-width: 90px;
   }
 }
 
+/* Responsividad para pantallas muy pequeñas */
 @media (max-width: 350px) {
   .header-container .logo h1 {
-    font-size: 2rem; /* Reduce aún más el tamaño de h1 */
+    font-size: 1.6rem;
   }
 
   .nav-links li a {
@@ -175,6 +175,6 @@ justify-content: space-around;
   }
 
   .header-container .logo img {
-    width: 100px;
+    max-width: 70px;
   }
 }
