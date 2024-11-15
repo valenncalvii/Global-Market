@@ -19,7 +19,7 @@ export default function DetailsProduct() {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate(); // Hook para redirigir
   const location = useLocation(); // Captura la URL de la página actual
-  const { isAuthenticated } = useAuth();// Estado de si el usuario está logueado
+  const { isAuthenticated} = useAuth();// Estado de si el usuario está logueado
 
  
   //funcion para llamar a la api y obtener producto
@@ -47,14 +47,26 @@ export default function DetailsProduct() {
   };
 
   // Redirigir al login si no está logueado y pasar la URL actual para redirigir después
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (!isAuthenticated) {
-      // Redirige a login, pasando la URL actual como "state"
       navigate("/login", { state: { from: location.pathname } });
+      
     } else {
-      // Si está logueado, procede con la compra
-      console.log("Proceder con la compra");
-    }
+        const newOrder = {
+          fechaOrden:  new Date().toISOString(),
+          UserId: 1, //
+          ProductId: product.id,
+          Quantit: 1,
+          Price: product.precio,
+        };
+    
+        try {
+          const response = await axios.post(`${API_URL}/orders`, newOrder);
+          console.log("Orden creada con éxito:", response.data);
+        } catch (error) {
+          console.error("Error al crear la orden:", error);
+        }
+      }
   };
 
   if (!product) {
